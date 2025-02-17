@@ -1,0 +1,1 @@
+Installation of the BEM File Editor is complete. It should work just like any other installed software with shortcuts, icons, file associations, and uninstallation.

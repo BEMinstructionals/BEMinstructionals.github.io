@@ -1,0 +1,12 @@
+Thank you for using the BEM File Editor. You can access the source code at the GitHub repository.
+https://github.com/BEMinstructionals/BEMinstructionals.github.io
+
+The BEM File Editor is based on the IDF+ Editor created by Matt Doiron.
+https://github.com/mattdoiron/idfplus
+https://github.com/mattdoiron
+
+The BEM Instructionals logo is licensed under a Creative Commons Attribution-ShareAlike 4.0 International license.
+https://creativecommons.org/licenses/by-sa/4.0/
+
+The code is licensed under the GNU General Public License version 3 (GPLv3).
+https://www.gnu.org/licenses/gpl-3.0.en.html
