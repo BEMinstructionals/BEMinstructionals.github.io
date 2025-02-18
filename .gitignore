@@ -1,9 +1,6 @@
 # Ignore
 _internal/
-mac/
-ubuntu/
-windows/build/
-windows/dist/
+env/
 
 # Exceptions
-#!path/filename.ext
+!path/filename.ext

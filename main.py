@@ -1,4 +1,4 @@
-import sys
+import sys, os
 
 from PySide6.QtCore import (
     Qt,
@@ -6,6 +6,7 @@ from PySide6.QtCore import (
     QSettings,
     QRectF,
 )
+
 from PySide6.QtGui import (
     QAction,
     QIcon,
@@ -45,16 +46,16 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        
+        with open('_internal/version.txt', 'r', encoding='utf-8') as file:
+            data = file.readlines()
+        version = data[0]
 
         self.setWindowTitle("Hello World")
         
         if QSysInfo.productType() == "windows":
-            self.setWindowIcon(QIcon("./_internal/bem_instructionals_CCbysa.ico"))
-        elif QSysInfo.productType() == "osx":
-            self.setWindowIcon(QIcon("bem_instructionals_CCbysa.icns"))
-        elif QSysInfo.productType() == "linux":
-            self.setWindowIcon(QIcon("bem_instructionals_CCbysa.png"))
-        #else the OS is unknown and the window icon won't be set
+            self.setWindowIcon(QIcon("_internal/bem_instructionals_CCbysa.ico"))
+        #else the OS is "osx" or "linux" which don't have a window icon or the OS is unknown and the window icon won't be set
         
         l = QLabel("My simple app.")
         l.setMargin(10)
