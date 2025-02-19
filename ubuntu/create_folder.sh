@@ -5,7 +5,7 @@ rm -r dist
 rm -r env
 rm "BEM File Editor.tar.gz"
 cp ../LICENSE.txt LICENSE.txt
-cp ../_internal/version.txt version.txt
+cp ../version.txt version.txt
 python3 -m venv env
 env/bin/pip3 install pyside6 pyinstaller
 env/bin/pyinstaller ubuntu.spec

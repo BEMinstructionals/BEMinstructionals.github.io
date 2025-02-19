@@ -47,9 +47,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        with open('_internal/version.txt', 'r', encoding='utf-8') as file:
-            data = file.readlines()
-        version = data[0]
+        version = "1.0.0" #set by update_version.py for OS differences which looks for this comment
 
         self.setWindowTitle("Hello World")
         

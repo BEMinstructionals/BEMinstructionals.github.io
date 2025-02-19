@@ -3,7 +3,7 @@ rmdir /s /q dist
 rmdir /s /q env
 rmdir /s /q Output
 copy ..\LICENSE.txt LICENSE.txt
-copy ..\_internal\version.txt version.txt
+copy ..\version.txt version.txt
 python -m venv env
 env\Scripts\pip3.exe install pyside6 pyinstaller
 env\Scripts\pyinstaller.exe windows.spec
