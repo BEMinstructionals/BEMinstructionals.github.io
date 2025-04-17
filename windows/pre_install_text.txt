@@ -1,0 +1,11 @@
+The BEM File Editor main.py code is licensed under a BSD-3-Clause license.
+https://github.com/BEMinstructionals/BEMinstructionals.github.io/blob/main/LICENSE.md
+
+You can access the source code at the GitHub repository.
+https://github.com/BEMinstructionals/BEMinstructionals.github.io
+
+The BEM Instructionals logo is licensed under a Creative Commons Attribution-ShareAlike 4.0 International license.
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Pyside6 is licensed under the GNU Lesser General Public License version 3.
+https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text
