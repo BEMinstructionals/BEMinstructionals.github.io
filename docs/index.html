@@ -3,7 +3,7 @@
 <head>
 <title>Building Energy Modeling Instructionals</title>
 
-<!--<meta name="description" content="">-->
+<meta name="description" content="The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the EnergyPlus whole building energy simulation program.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32" href="BEM_Instructionals32_CCbysa.png">
@@ -29,18 +29,72 @@
 
 <div id="content_row">
   <div id="left_content">
-  <h3 class="table_of_contents_h3"><a href="#id_Preliminaries">Getting Started</a></h3>
+  <h3 class="table_of_contents_h3"><a href="#id_BEM_File_Editor">BEM File Editor</a></h3>
   <ol>
-  <li><a href="#id_Downloads">Downloads</a></li>
+    <li><a href="#id_About">About</a></li>
+	  <li><a href="#id_Licenses">Licenses</a></li>
+	  <li><a href="#id_Downloads">Downloads</a></li>
+	  <ol>
+	    <li><a href="#id_Installers">Installers</a></li>
+			<li><a href="#id_Run_using_Python">Run using Python</a></li>
+			<li><a href="#id_Reporting_Bugs_or_Annoying_Behavior">Reporting Bugs or Annoying Behavior</a></li>
+	  </ol>
+	  <li><a href="#id_Acknowledgments">Acknowledgments</a></li>
+	  <!--<li><a href="#id_FAQs">FAQs</a></li>-->
   </ol>
   </div>
   
 <div id="left_empty_column"></div>
   <div id="right_content">
-	
-		<h1 id="id_Downloads">Downloads</h1>
-		<p>description</p>
-	
+	  <h1 id="id_BEM_File_Editor">BEM File Editor</h1>
+		
+	    <h2 style="padding-left: 1em;" id="id_About">About</h2>
+		    <p style="padding-left: 2em;">The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the <a href="https://energyplus.net/" target="_blank" style="text-decoration: underline; color: blue;">EnergyPlus</a> whole building energy simulation program. The BEM File Editor installer does not contain any version of the EnergyPlus simulation program. Each version of EnergyPlus you want to use must be installed separately.</p>
+		
+		<!--<a href="" target="_blank" style="text-decoration: underline; color: blue;"></a>-->
+		
+		  <h2 style="padding-left: 1em;" id="id_Licenses">Licenses</h2>
+		    <p style="padding-left: 2em;">The BEM File Editor main.py code is licensed under a BSD-3-Clause license. See the <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/blob/master/LICENSE.md" target="_blank" style="text-decoration: underline; color: blue;">LICENSE</a> file for details.</p>
+
+		    <p style="padding-left: 2em;">The BEM Instructionals logo is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="text-decoration: underline; color: blue;">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</p>
+
+		    <p style="padding-left: 2em;">PySide6 is licensed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text" target="_blank" style="text-decoration: underline; color: blue;">GNU Lesser General Public License version 3</a>.</p>
+		
+		  <h2 style="padding-left: 1em;" id="id_Downloads">Downloads</h2>
+		
+		    <h3 style="padding-left: 2em;" id="id_Installers">Installers for Version 1.0.0</h3><!-- must be changed with each release -->
+		      <p style="padding-left: 3em;">Windows 11 x86_64 <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.0.0/BEM-File-Editor-Setup.exe" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor-Setup.exe</a></p>
+		      <p style="padding-left: 3em;">macOS Sequoia <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.0.0/BEM-File-Editor.dmg" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.dmg</a></p>
+		      <!--<p style="padding-left: 3em;">Ubuntu 24.04.1 LTS <a href="" target="_blank" style="text-decoration: underline; color: blue;"></a></p>-->
+				
+		    <h3 style="padding-left: 2em;" id="id_Run_using_Python">Run using Python</h3>
+		      <p style="padding-left: 3em;">If you want to run the BEM File Editor without installing it, you can run the main.py file with python. First download the BEM File Editor code directly from the <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io" target="_blank" style="text-decoration: underline; color: blue;">BEM Instructionals</a> GitHub repo. I recommend using venv to create a python virtual environment that uses Python 3.12.9 for compatibility and install the pyside6 package with pip. Then python main.py will start the BEM File Editor. Keep in mind this will be slower since the installer is optimized.</p>
+			  
+				<h3 style="padding-left: 2em;" id="id_Reporting_Bugs_or_Annoying_Behavior">Reporting Bugs or Annoying Behavior</h3>
+					<p style="padding-left: 3em;">I have tested on Windows 11 x86_64, but I suspect there are still some bugs and annoying behavior. If you encounter a bug, you can try viewing the console output by enabling the View->Application Settings "Show Python Console Tab" checkbox. If there is no exception thrown then I probably made a logical error in the code, in which case all you'll see in the "python console" tab is datetimes of when the BEM File Editor was opened. In both cases, please document the steps to reproduce the behavior, <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on GitHub</a>, and I will try to fix it.</p>
+	  
+		  <h2 style="padding-left: 1em;" id="id_Acknowledgments">Acknowledgments</h2>
+
+        <p style="padding-left: 2em;">The BEM File Editor was inspired by the <a href="https://github.com/mattdoiron/idfplus" target="_blank" style="text-decoration: underline; color: blue;">IDF+ Editor</a> created by Matt Doiron.</p>
+				
+				<!--Special shout out to NAME and NAME at .-->
+		
+		    <p style="padding-left: 2em;">A big Thank You! to all users who document and report bugs and annoying behavior when they occur.</p>
+		
+		  <!--<h2 style="padding-left: 1em;" id="id_FAQs">FAQs</h2>
+		
+		    <h3 style="padding-left: 3em;">What is the "EnergyPlus temp files" folder in my *.idf directory?</h3>
+		      <p style="padding-left: 4em;">blah</p>
+        <h3 style="padding-left: 3em;">How do I associate *.idf files with the BEM File Editor?</h3>
+		      <p style="padding-left: 4em;">blah</p>
+        <h3 style="padding-left: 3em;">Why are some table cells colored orange for invalid but the IDF still runs?</h3>
+		      <p style="padding-left: 4em;">blah</p>
+        <h3 style="padding-left: 3em;">Why is my computer deleting the installation files?</h3>
+		      <p style="padding-left: 4em;">blah</p>
+        <h3 style="padding-left: 3em;">Why does the log file not display immediately but has to be manually refreshed instead?</h3>
+		      <p style="padding-left: 4em;">blah</p>-->
+				<!--<h3 style="padding-left: 3em;">tdv</h3>
+		      <p style="padding-left: 4em;">blah</p>-->
   </div>
 </div>
 </body>
