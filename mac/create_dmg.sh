@@ -4,7 +4,7 @@ rm -r build
 rm -r dist
 rm -r env
 rm -r "BEM File Editor"
-rm "BEM File Editor.dmg"
+rm "BEM-File-Editor.dmg"
 cp ../LICENSE.md LICENSE.md
 cp ../PySide6_license.txt PySide6_license.txt
 cp ../version.txt version.txt
