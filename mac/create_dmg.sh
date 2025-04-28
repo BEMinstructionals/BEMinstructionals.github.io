@@ -14,7 +14,7 @@ env/bin/pyinstaller mac.spec
 rm -r "dist/BEM File Editor"
 ln -s /Applications dist/Applications
 mv dist "BEM File Editor"
-hdiutil create -format UDZO "BEM File Editor.dmg" -srcfolder "BEM File Editor"
+hdiutil create -format UDZO "BEM-File-Editor.dmg" -srcfolder "BEM File Editor"
 rm -r "BEM File Editor"
 rm -r build
 rm -r env
