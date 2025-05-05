@@ -8,9 +8,9 @@ The BEM File Editor is a modern editor for *.idf files, which are the Input Data
 
 Windows 11 x86_64 [BEM-File-Editor-Setup.exe](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.0.0/BEM-File-Editor-Setup.exe)
 
-macOS Sequoia [BEM-File-Editor.dmg](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.0.0/BEM-File-Editor.dmg)
+macOS Sequoia ARM64 [BEM-File-Editor.dmg](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.0.0/BEM-File-Editor.dmg)
 
-<!--Ubuntu 24.04.1 LTS []()-->
+Ubuntu 24.04.2 LTS amd64 [BEM-File-Editor.deb](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.0.0/BEM-File-Editor.deb)
 
 ### Run using Python
 
@@ -31,7 +31,5 @@ PySide6 is licensed under the [GNU Lesser General Public License version 3](http
 ## Acknowledgments
 
 The BEM File Editor was inspired by the [IDF+ Editor](https://github.com/mattdoiron/idfplus) created by Matt Doiron.
-
-<!--Thanks for  and at  for -->
 
 A big Thank You! to all users who document and report bugs and annoying behavior when they occur.

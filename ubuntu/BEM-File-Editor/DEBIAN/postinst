@@ -1,0 +1,5 @@
+#!/bin/sh
+# This script will be executed after the package is installed.
+
+echo "The BEM File Editor has been installed successfully."
+echo "Use sudo dpkg --remove bem-file-editor to remove."

@@ -1,0 +1,6 @@
+Package: BEM-File-Editor
+Version: 1.0.0
+Maintainer: Mitchal Dichter <mitchaldichter@beminstructionals.com> 
+Architecture: amd64
+Description: The BEM File Editor is an enhanced, cross-platform editor for EnergyPlus input files.
+Homepage: https://github.com/BEMinstructionals/BEMinstructionals.github.io

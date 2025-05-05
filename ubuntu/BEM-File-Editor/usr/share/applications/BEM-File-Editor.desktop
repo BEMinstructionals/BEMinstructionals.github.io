@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0.0
+Name=BEM File Editor
+Exec="/opt/BEM File Editor/BEM File Editor"
+Icon=BEM_Instructionals_CCbysa
+Terminal=false
+Type=Application
+Categories=Utility;Application;
+StartupWMClass=BEM File Editor
