@@ -12,6 +12,7 @@ python3 -m venv env
 env/bin/pip3 install pyside6 pyinstaller
 env/bin/pyinstaller ubuntu.spec
 mv "dist/BEM File Editor" "BEM-File-Editor/opt/BEM File Editor"
+chmod -R 755 BEM-File-Editor
 dpkg-deb --build BEM-File-Editor
 chown vboxuser BEM-File-Editor.deb
 rm -r build

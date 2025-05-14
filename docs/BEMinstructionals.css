@@ -179,6 +179,12 @@ tr:nth-child(even) {
   color: #0096FF;
 }
 
+.inline_youtube_icon {
+  height: 1em;
+  vertical-align:middle;
+  padding-bottom: 0.1em;
+}
+
 .center_img {
   display: block;
   margin-left: auto;
