@@ -25,6 +25,7 @@ Ubuntu 24.04.2 LTS amd64 [BEM-File-Editor.deb](https://github.com/BEMinstruction
 This option is useful for users with employers that limit what can be installed on their computer and for employers that automatically delete unapproved applications.
 
 Download [BEM-File-Editor-1.1.0.zip](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.1.0/BEM-File-Editor-1.1.0.zip)
+
 Steps are to install Pyside6 using "pip install pyside6", then "python main.py" to start the BEM File Editor. (Using Python 3.13 is recommended for compatibility.)
 
 ### Reporting Bugs
