@@ -1,4 +1,5 @@
 import sys
+from datetime import date
 
 if len(sys.argv) == 2:
     new_version = sys.argv[1]
@@ -65,7 +66,7 @@ if len(sys.argv) == 2:
         elif "Ubuntu 24.04.2 LTS amd64 [BEM-File-Editor.deb]" in lines[line_index]:
             lines[line_index] = "Ubuntu 24.04.2 LTS amd64 [BEM-File-Editor.deb](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v" + new_version + "/BEM-File-Editor.deb)\n"
         elif "Download [BEM-File-Editor-" in lines[line_index]:
-            lines[line_index] = "Download [BEM-File-Editor-" + new_version + ".zip](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v" + new_version + "/BEM-File-Editor-" + new_version + ".zip)"
+            lines[line_index] = "Download [BEM-File-Editor-" + new_version + ".zip](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v" + new_version + "/BEM-File-Editor-" + new_version + ".zip)\n"
     with open("README.md", "w", encoding="utf-8") as file:
         file.writelines(lines)
     
@@ -81,8 +82,16 @@ if len(sys.argv) == 2:
         elif "Ubuntu 24.04.2 LTS amd64" in lines[line_index]:
             lines[line_index] = "          <p style=\"padding-left: 3em;\">Ubuntu 24.04.2 LTS amd64 <a href=\"https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v" + new_version + "/BEM-File-Editor.deb\" target=\"_blank\" style=\"text-decoration: underline; color: blue;\">BEM-File-Editor.deb</a></p>\n"
         elif "<p style=\"padding-left: 3em;\">Download <a" in lines[line_index]:
-            lines[line_index] = "          <p style=\"padding-left: 3em;\">Download <a href=\"https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v" + new_version + "/BEM-File-Editor-" + new_version + ".zip\" target=\"_blank\" style=\"text-decoration: underline; color: blue;\">BEM-File-Editor-" + new_version + ".zip</a></p>"
+            lines[line_index] = "          <p style=\"padding-left: 3em;\">Download <a href=\"https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v" + new_version + "/BEM-File-Editor-" + new_version + ".zip\" target=\"_blank\" style=\"text-decoration: underline; color: blue;\">BEM-File-Editor-" + new_version + ".zip</a></p>\n"
     with open("docs/index.html", "w", encoding="utf-8") as file:
+        file.writelines(lines)
+    
+    with open("docs/sitemap.xml", "r", encoding="utf-8") as file:
+        lines = file.readlines()
+    for line_index in range(len(lines)):
+        if "<lastmod>" in lines[line_index]:
+            lines[line_index] = "    <lastmod>" + date.today().isoformat() + "</lastmod>\n"
+    with open("docs/sitemap.xml", "w", encoding="utf-8") as file:
         file.writelines(lines)
 
 else:

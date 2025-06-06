@@ -8,23 +8,29 @@ For a much more comprehensive overview, please see the accompanying [BEM Instruc
 
 The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the [EnergyPlus](https://energyplus.net/) whole building energy simulation program. The BEM File Editor installer does not contain any version of the EnergyPlus simulation program. Each version of EnergyPlus you want to use must be installed separately.
 
+### Editor Tab
+
 ![Editor_tab_example](docs/Editor_tab_example.png)
 
-## Version 1.1.0
+### Geometry Tab
+
+![Geometry_tab_example](docs/Geometry_tab_example.png)
+
+## Version 1.2.0
 
 ### Installers
 
-Windows 11 x86_64 [BEM-File-Editor-Setup.exe](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.1.0/BEM-File-Editor-Setup.exe)
+Windows 11 x86_64 [BEM-File-Editor-Setup.exe](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.2.0/BEM-File-Editor-Setup.exe)
 
-macOS Sequoia ARM64 [BEM-File-Editor.dmg](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.1.0/BEM-File-Editor.dmg)
+macOS Sequoia ARM64 [BEM-File-Editor.dmg](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.2.0/BEM-File-Editor.dmg)
 
-Ubuntu 24.04.2 LTS amd64 [BEM-File-Editor.deb](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.1.0/BEM-File-Editor.deb)
+Ubuntu 24.04.2 LTS amd64 [BEM-File-Editor.deb](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.2.0/BEM-File-Editor.deb)
 
 ### Run using Python without Installing
 
 This option is useful for users with employers that limit what can be installed on their computer and for employers that automatically delete unapproved applications.
 
-Download [BEM-File-Editor-1.1.0.zip](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.1.0/BEM-File-Editor-1.1.0.zip)
+Download [BEM-File-Editor-1.2.0.zip](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.2.0/BEM-File-Editor-1.2.0.zip)
 
 Steps are to install Pyside6 using "pip install pyside6", then "python main.py" to start the BEM File Editor. (Using Python 3.13 is recommended for compatibility.)
 
