@@ -42,16 +42,17 @@
     <ol>
       <li><a href="#id_Installers">Installers</a></li>
       <li><a href="#id_Run_using_Python_without_Installing">Run using Python without Installing</a></li>
-      <li><a href="#id_Reporting_Bugs">Reporting Bugs</a></li>
-      <ol>
-        <li><a href="#id_Reporting_Bugs_BEM_File_Editor">BEM File Editor</a></li>
-        <li><a href="#id_Reporting_Bugs_EnergyPlus">EnergyPlus</a></li>
-      </ol>
     </ol>
+    <li><a href="#id_Consulting">Consulting</a></li>
     <li><a href="#id_Learning_Resources">Learning Resources</a></li>
     <ol>
       <li><a href="#id_BEM_Instructionals_YouTube_Channel">BEM Instructionals YouTube Channel</a></li>
       <li><a href="#id_UnmetHours_com">UnmetHours.com</a></li>
+    </ol>
+    <li><a href="#id_Reporting_Bugs">Reporting Bugs</a></li>
+    <ol>
+      <li><a href="#id_Reporting_Bugs_BEM_File_Editor">BEM File Editor</a></li>
+      <li><a href="#id_Reporting_Bugs_EnergyPlus">EnergyPlus</a></li>
     </ol>
     <li><a href="#id_FAQs">FAQs</a></li>
     <li><a href="#id_Acknowledgments">Acknowledgments</a></li>
@@ -78,25 +79,28 @@
         <p style="padding-left: 2em;">PySide6 is licensed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text" target="_blank" style="text-decoration: underline; color: blue;">GNU Lesser General Public License version 3</a>.</p>
     
       <h2 style="padding-left: 1em;" id="id_Downloads">Downloads</h2>
-    
-        <h3 style="padding-left: 2em;" id="id_Installers">Installers for Version 1.3.0</h3><!-- must be changed with each release -->
-          <p style="padding-left: 3em;">Windows 11 x86_64 <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor-Setup.exe" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor-Setup.exe</a></p>
-          <p style="padding-left: 3em;">macOS Sequoia ARM64 <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor.dmg" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.dmg</a></p>
-          <p style="padding-left: 3em;">Ubuntu 24.04.2 LTS amd64 <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor.deb" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.deb</a></p>
+        
+        <h3 style="padding-left: 2em;" id="id_Installers">Installers for Version 1.3.0</h3>
+        <table>
+          <tr>
+            <td><img src="Microsoft_logo.svg" alt="Windows logo" style="height:1.5em;vertical-align:middle;padding-bottom:0.2em;"> Windows 11 x86_64</td>
+            <td><img src="Apple_logo_grey.svg" alt="Apple logo" style="height:1.5em;vertical-align:middle;padding-bottom:0.2em;"> macOS Sequoia ARM64</td>
+            <td><img src="Logo-ubuntu_cof-orange-hex.svg" alt="Ubuntu logo" style="height:1.5em;vertical-align:middle;padding-bottom:0.2em;"> Ubuntu 24.04.2 LTS amd64</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor-Setup.exe" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor-Setup.exe</a></td>
+            <td><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor.dmg" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.dmg</a></td>
+            <td><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor.deb" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.deb</a></td>
+          </tr>
+        </table>
         
         <h3 style="padding-left: 2em;" id="id_Run_using_Python_without_Installing">Run using Python without Installing</h3>
-          <p style="padding-left: 3em;">This option is useful for users with employers that limit what can be installed on their computer and for employers that automatically delete unapproved applications.</p>
           <p style="padding-left: 3em;">Download <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor-1.3.0.zip" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor-1.3.0.zip</a></p>
-          <p style="padding-left: 3em;">Steps are to install Pyside6 using "pip install pyside6", then "python main.py" to start the BEM File Editor. (Using Python 3.13 is recommended for compatibility.)</p>
-        
-        <h3 style="padding-left: 2em;" id="id_Reporting_Bugs">Reporting Bugs</h3>
-        
-          <h4 style="padding-left: 3em;" id="id_Reporting_Bugs_BEM_File_Editor">BEM File Editor</h4>
-          <p style="padding-left: 3em;">I have tested the most on Windows 11 because that is the OS I develop on, and I do test new features on macOS and Ubuntu, but I suspect there are still some bugs and annoying behaviors lurking in the code. If you encounter a bug in the BEM File Editor, you can try viewing the console output by enabling the View->Application Settings "Show Python Console Tab" checkbox. If there is no exception thrown then I probably made a logical error in the code, in which case all you'll see in the "python console" tab is datetimes of when the BEM File Editor was opened. In both cases, please document the steps to reproduce the behavior, <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on the BEM File Editor GitHub repo</a>, and I will try to fix it.</p>
+          <p style="padding-left: 3em;">This option is useful for users with employers that limit what can be installed on their computer and for uncommon or older operating systems. Steps are to install Pyside6 using "pip install pyside6", then "python main.py" to start the BEM File Editor. (Using Python 3.13 is recommended for compatibility.)</p>
           
-          <h4 style="padding-left: 3em;" id="id_Reporting_Bugs_EnergyPlus">EnergyPlus</h4>
-            <p style="padding-left: 4em;">EnergyPlus is completely separate from the BEM File Editor, so if you think you've found a bug with one of the EnergyPlus programs, you can <a href="https://github.com/NREL/EnergyPlus/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on the EnergyPlus GitHub repo</a>.</p>
-            
+      <h2 style="padding-left: 1em;" id="id_Consulting">Consulting</h2>
+        <p style="padding-left: 2em;">I work as a consultant in the energy industry creating EnergyPlus models for clients and automating the generation of thousands to millions of building models, their simulation, and performance analysis. If you need EnergyPlus modeling for a project, support learning EnergyPlus, or as needed technical assistance, you can contact me at <a href="mailto:mitchaldichter@beminstructionals.com" style="text-decoration: underline; color: blue;">mitchaldichter@beminstructionals.com</a>.</p>
+        
       <h2 style="padding-left: 1em;" id="id_Learning_Resources">Learning Resources</h2>
         
         <h3 style="padding-left: 2em;" id="id_BEM_Instructionals_YouTube_Channel"><a href="https://www.youtube.com/@BEMInstructionals" target="_blank" style="text-decoration: underline; color: blue;">BEM Instructionals YouTube Channel <img class="inline_youtube_icon" alt="youtube icon" src="youtube_icon.svg"></a></h3>
@@ -106,8 +110,14 @@
         <h3 style="padding-left: 2em;" id="id_UnmetHours_com"><a href="https://unmethours.com/questions/" target="_blank" style="text-decoration: underline; color: blue;">UnmetHours.com</a></h3>
           <p style="padding-left: 3em;">Unmet Hours is a forum for the building energy modeling community, mostly focusing on EnergyPlus and programs that use EnergyPlus. If you have a question, you can search for the answer, or post your own question. If you want me to receive an email notification when you post something, include "@Mitchal Dichter" in the text without the quotes. You'll know it worked if the <span style="color: #1b79bd">@Mitchal Dichter</span> text turns blue shortly after you post.</p>
           
-          
+      <h2 style="padding-left: 1em;" id="id_Reporting_Bugs">Reporting Bugs</h2>
         
+          <h3 style="padding-left: 2em;" id="id_Reporting_Bugs_BEM_File_Editor">BEM File Editor</h3>
+          <p style="padding-left: 2em;">I have tested the most on Windows 11 because that is the OS I develop on, and I do test new features on macOS and Ubuntu, but I suspect there are still some bugs and annoying behaviors lurking in the code. If you encounter a bug in the BEM File Editor, you can try viewing the console output by enabling the View->Application Settings "Show Python Console Tab" checkbox. If there is no exception thrown then I probably made a logical error in the code, in which case all you'll see in the "python console" tab is datetimes of when the BEM File Editor was opened. In both cases, please document the steps to reproduce the behavior, <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on the BEM File Editor GitHub repo</a>, and I will try to fix it.</p>
+          
+          <h3 style="padding-left: 2em;" id="id_Reporting_Bugs_EnergyPlus">EnergyPlus</h3>
+            <p style="padding-left: 3em;">EnergyPlus is completely separate from the BEM File Editor, so if you think you've found a bug with one of the EnergyPlus programs, you can <a href="https://github.com/NREL/EnergyPlus/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on the EnergyPlus GitHub repo</a>.</p>
+      
       <h2 style="padding-left: 1em;" id="id_FAQs">FAQs</h2>
         
         <h3 style="padding-left: 3em;">How do I associate *.idf files with the BEM File Editor?</h3>
