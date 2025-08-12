@@ -6,15 +6,11 @@ The READMEs for GitHub repos have limited functionality and are meant to provide
 
 For a much more comprehensive overview, please see the accompanying [BEM Instructionals website](https://beminstructionals.com/) or the [BEM Instructionals YouTube Channel](https://www.youtube.com/@BEMInstructionals).
 
-## Download Links
+## Download
 
-### Latest Release Installers and Standalone Code
+The [Downloads](https://beminstructionals.com/#id_Downloads) section of the accompanying website has the installer and files to run the BEM File Editor directly with Python for the latest version.
 
-The [Downloads](https://beminstructionals.com/#id_Downloads) section of the accompanying website has all the installers and files to run the BEM File Editor directly with Python for the latest version.
-
-### Downloads for All Releases
-
-If you would like to download the installers or release code for the current or a previous release directly from the GitHub repo, the [Releases page](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases) has all the releases and their assets.
+If you would like to download the installer or release code for the current or a previous release directly from the GitHub repo, the [Releases page](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases) has all the releases and their assets.
 
 ## Reporting Bugs
 
