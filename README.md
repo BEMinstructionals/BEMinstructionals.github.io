@@ -16,7 +16,7 @@ If you would like to download the installer or release code for the current or a
 
 ### BEM File Editor
 
-I have tested the most on Windows 11 because that is the OS I develop on, and I do test new features on macOS and Ubuntu, but I suspect there are still some bugs and annoying behaviors lurking in the code. If you encounter a bug in the BEM File Editor, you can try viewing the console output by enabling the View-&gt;Application Settings "Show Python Console Tab" checkbox. If there is no exception thrown, then I probably made a logical error in the code, in which case all you'll see in the "python console" tab is datetimes of when the BEM File Editor was opened. In both cases, please document the steps to reproduce the behavior, [create an issue on the BEM File Editor GitHub repo](https://github.com/BEMinstructionals/BEMinstructionals.github.io/issues), and I will try to fix it.
+I have tested on Windows 11 because that is the OS I develop on, but I suspect there are still some bugs and annoying behaviors lurking in the code. If you encounter a bug in the BEM File Editor, you can try viewing the console output by enabling the View-&gt;Application Settings "Show Python Console Tab" checkbox. If there is no exception thrown, then I probably made a logical error in the code, in which case all you'll see in the "python console" tab is datetimes of when the BEM File Editor was opened. In both cases, please document the steps to reproduce the behavior, [create an issue on the BEM File Editor GitHub repo](https://github.com/BEMinstructionals/BEMinstructionals.github.io/issues), and I will try to fix it.
 
 ### EnergyPlus
 
