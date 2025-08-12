@@ -30,7 +30,7 @@ exe = EXE(
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
-    codesign_identity=None,
+    codesign_identity='Mitchal Dichter, LLC',
     entitlements_file=None,
     icon=['BEM_Instructionals_CCbysa.icns'],
 )
@@ -47,5 +47,6 @@ app = BUNDLE(
     coll,
     name='BEM File Editor.app',
     icon='BEM_Instructionals_CCbysa.icns',
-    bundle_identifier=None,
+    bundle_identifier='com.beminstructionals.bemfileeditor',
+    codesign_identity='Mitchal Dichter, LLC',
 )

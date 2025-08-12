@@ -8,6 +8,7 @@ copy ..\version.txt version.txt
 python -m venv env
 env\Scripts\pip3.exe install pyside6 pyinstaller
 env\Scripts\pyinstaller.exe windows.spec
+"C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe" sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a "dist\main\BEM File Editor.exe"
 "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" create_windows_installer.iss
 move "Output\BEM File Editor Setup.exe" "BEM-File-Editor-Setup.exe"
 rmdir /s /q build

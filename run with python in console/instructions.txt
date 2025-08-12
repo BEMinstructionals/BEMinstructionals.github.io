@@ -7,4 +7,4 @@ install PySide6 with "pip install pyside6"
 note that this will run a little slower than the installers because the installers have been optimized
 
 open a console in the directory containing main.py
-use "python main.py" to run the BEM File Editor 1.3.0
+use "python main.py" to run the BEM File Editor 1.4.0

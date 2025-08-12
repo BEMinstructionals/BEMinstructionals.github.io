@@ -15,6 +15,7 @@ rm -r "dist/BEM File Editor"
 ln -s /Applications dist/Applications
 mv dist "BEM File Editor"
 hdiutil create -format UDZO "BEM-File-Editor.dmg" -srcfolder "BEM File Editor"
+codesign -s "Mitchal Dichter, LLC" "BEM-File-Editor.dmg"
 rm -r "BEM File Editor"
 rm -r build
 rm -r env

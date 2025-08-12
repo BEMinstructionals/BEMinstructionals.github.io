@@ -14,7 +14,6 @@ env/bin/pyinstaller ubuntu.spec
 mv "dist/BEM File Editor" "BEM-File-Editor/opt/BEM File Editor"
 chmod -R 755 BEM-File-Editor
 dpkg-deb --build BEM-File-Editor
-chown vboxuser BEM-File-Editor.deb
 rm -r build
 rm -r dist
 rm -r env

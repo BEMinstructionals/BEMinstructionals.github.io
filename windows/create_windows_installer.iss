@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "BEM File Editor"
-#define MyAppVersion "1.3.0"
+#define MyAppVersion "1.4.0"
 #define MyAppPublisher "BEM Instructionals"
 #define MyAppURL "https://beminstructionals.com/"
 #define MyAppExeName "BEM File Editor.exe"
@@ -34,15 +34,17 @@ ArchitecturesInstallIn64BitMode=x64compatible
 ChangesAssociations=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=C:\Users\mldic\Documents\GitHub\BEMinstructionals.github.io\LICENSE.md
-InfoBeforeFile=C:\Users\mldic\Documents\GitHub\BEMinstructionals.github.io\windows\pre_install_text.txt
-InfoAfterFile=C:\Users\mldic\Documents\GitHub\BEMinstructionals.github.io\windows\post_install_text.txt
+LicenseFile=LICENSE.md
+InfoBeforeFile=pre_install_text.txt
+InfoAfterFile=post_install_text.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=BEM File Editor Setup
 SolidCompression=yes
 WizardStyle=modern
+SignTool=MySigningCommand
+SignedUninstaller=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -51,8 +53,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
-Source: "C:\Users\mldic\Documents\GitHub\BEMinstructionals.github.io\windows\dist\main\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\mldic\Documents\GitHub\BEMinstructionals.github.io\windows\dist\main\_internal\*"; DestDir: "{app}\_internal"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\main\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\main\_internal\*"; DestDir: "{app}\_internal"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]

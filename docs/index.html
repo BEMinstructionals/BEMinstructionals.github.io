@@ -8,156 +8,736 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" sizes="32x32" href="BEM_Instructionals32_CCbysa.png">
 <link rel="icon" type="image/png" sizes="16x16" href="BEM_Instructionals16_CCbysa.png">
-<link rel="stylesheet" href="BEMinstructionals.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+
+<style>
+.title_font {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "SOFT" 0,
+    "WONK" 0;
+  
+  font-size: 48pt;
+  
+  color: #254F53;
+}
+
+.subtitle_font {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  
+  font-size: 22pt;
+}
+
+.text_font {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  
+  font-size: 16pt;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0px;
+  background: #254F53;
+  
+  background-image: url("abstract_glass_art_modified.jpg");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.navigation_bar_container {
+  background: #FFFFFF;
+  margin-bottom: 5vh;
+}
+
+hr {
+  height: 0.6em;
+  background-color: #254F53;
+  border: none;
+}
+
+.short_hr {
+  width: 6.5em;
+  margin: 1em 0em 1em 0em;
+}
+
+.navigation_bar {
+  padding: 1vh 1vw 1vh 1vw;
+  
+  text-align: center;
+}
+
+.navigation_bar_anchors_div {
+  line-height: 10vh;
+}
+
+.navigation_bar_anchors {
+  color: #36ADB9;
+  text-decoration: none;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.navigation_bar_logo {
+  height: 10vh;
+  border-radius: 50%;
+  
+  float: left;
+  vertical-align:middle;
+}
+
+.main_content {
+  background: #FFFFFF;
+  margin: auto;
+  width: 80%;
+  border-radius: 2em;
+  
+  padding: 2vh 2vw 2vh 2vw;
+}
+
+.text_anchors {
+  color: #36ADB9;
+  text-decoration: underline;
+}
+
+.email_text {
+  color: #36ADB9;
+}
+
+#tabs_and_features_left_column {
+  float: left;
+  width: 35%;
+}
+
+#tabs_and_features_right_column {
+  float: left;
+  width: 65%;
+}
+
+#tabs_and_features_container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.tabs_and_features_button {
+  font-weight: bold;
+  padding: 0.25em;
+  
+  width: 15em;
+  background-color: #FFFFFF;
+  border: 0.25em solid #36ADB9;
+  border-radius: 0.5em;
+  display: block;
+  margin: 0px auto;
+  
+  cursor: pointer;
+}
+
+.tabs_and_features_hr {
+  margin: 1em 0em 1em 1.25em;
+}
+
+.features_and_tab_img {
+  width: 100%;
+}
+
+.installers_td {
+  padding-left: 1em;
+}
+
+.installers_os_img {
+  height: 3em;
+  vertical-align: middle;
+}
+
+.installers_zip_img {
+  height: 2.5em;
+  vertical-align: middle;
+  
+  padding-bottom: 0.2em;
+}
+
+#downloads_licenses_acknowledgments_left_column {
+  float: left;
+  width: 30%;
+  
+  margin-left: 10%;
+  padding-right: 5%;
+  border-right: 5px solid #AADADF;
+}
+
+#downloads_licenses_acknowledgments_right_column {
+  float: left;
+  width: 49%;
+  margin-left: 5%;
+}
+
+.downloads_licenses_acknowledgments_indented_content {
+  padding-left: 1em;
+}
+
+#downloads_licenses_acknowledgments_container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.inline_youtube_icon {
+  height: 1em;
+  vertical-align:middle;
+  padding-bottom: 0.1em;
+}
+
+.youtube_table{
+  margin-left: auto;
+  margin-right: auto;
+  
+  max-width:90%;
+}
+
+.youtube_td {
+  vertical-align: top;
+  padding: 0.5em;
+}
+
+.youtube_img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 1em;
+}
+
+.youtube_ul {
+  margin-top: 0px;
+}
+
+.contact_div:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.contact_left_column {
+  float: left;
+  width: 30%;
+  text-align:center;
+}
+
+.contact_right_column {
+  float: left;
+  width: 60%;
+}
+
+.inline_icon {
+  height: 1.5em;
+  vertical-align:middle;
+  padding-bottom: 0.1em;
+}
+</style>
+
+<script>
+function featureCellClicked(clicked_button_element) {
+  let names_array = ["General", "EnergyPlus console", "Editor", "Geometry", "Node Connections", "Text Output File", "CSV Output File", "HTML Output File"];
+  
+  for (const name of names_array) {
+    let id_button_from_name = "id_button_" + name.replaceAll(" ","_")
+    let button_element_from_name = document.getElementById("id_button_" + name.replaceAll(" ","_"))
+    let div_element_from_name = document.getElementById("id_div_" + name.replaceAll(" ","_"))
+    
+    if (id_button_from_name === clicked_button_element.id) {
+      div_element_from_name.style.display = "block";
+      clicked_button_element.style.backgroundColor = "#36ADB9";
+    } else {
+      div_element_from_name.style.display = "none";
+      button_element_from_name.style.backgroundColor = null;
+    }
+  }
+}
+
+window.onload = function() {
+    featureCellClicked(document.getElementById("id_button_Geometry"))
+};
+</script>
 </head>
 <body>
-
-<div id="header_row">
-  <div id="left_header" class="building_energy_modeling_instructionals_header">
-    Table of Contents
-  </div>
-  <div id="right_header" class="building_energy_modeling_instructionals_header">
-    Building Energy Modeling Instructionals
-  </div>
-  <div id="profile_picture_div">
-  <img id="profile_picture_img" alt="channel logo" src="BEM_Instructionals100_CCbysa.webp">
+<div class="navigation_bar_container">
+  <div class="navigation_bar">
+    <img class="navigation_bar_logo" alt="channel logo" src="BEM_Instructionals496_CCbysa.png">
+    <div class="navigation_bar_anchors_div">
+      <a href="#id_BEM_File_Editor" class="navigation_bar_anchors subtitle_font">BEM File Editor</a>
+      <a href="#id_Downloads" class="navigation_bar_anchors subtitle_font">Downloads</a>
+      <a href="#id_Consulting" class="navigation_bar_anchors subtitle_font">Consulting</a>
+      <a href="#id_Learning_Resources" class="navigation_bar_anchors subtitle_font">Learning Resources</a>
+      <a href="#id_Contact" class="navigation_bar_anchors subtitle_font">Contact</a>
+    </div>
   </div>
 </div>
 
-<div id="content_row">
-  <div id="left_content">
-  <h3 class="table_of_contents_h3"><a href="#id_BEM_File_Editor">BEM File Editor</a></h3>
-  <ol>
-    <li><a href="#id_About">About</a></li>
-    <ol>
-      <li><a href="#id_Editor_Tab">Editor Tab</a></li>
-      <li><a href="#id_Geometry_Tab">Geometry Tab</a></li>
-      <li><a href="#id_Node_Connections_Tab">Node Connections Tab</a></li>
-    </ol>
-    <li><a href="#id_Licenses">Licenses</a></li>
-    <li><a href="#id_Downloads">Downloads</a></li>
-    <ol>
-      <li><a href="#id_Installers">Installers</a></li>
-      <li><a href="#id_Run_using_Python_without_Installing">Run using Python without Installing</a></li>
-    </ol>
-    <li><a href="#id_Consulting">Consulting</a></li>
-    <li><a href="#id_Learning_Resources">Learning Resources</a></li>
-    <ol>
-      <li><a href="#id_BEM_Instructionals_YouTube_Channel">BEM Instructionals YouTube Channel</a></li>
-      <li><a href="#id_UnmetHours_com">UnmetHours.com</a></li>
-    </ol>
-    <li><a href="#id_Reporting_Bugs">Reporting Bugs</a></li>
-    <ol>
-      <li><a href="#id_Reporting_Bugs_BEM_File_Editor">BEM File Editor</a></li>
-      <li><a href="#id_Reporting_Bugs_EnergyPlus">EnergyPlus</a></li>
-    </ol>
-    <li><a href="#id_FAQs">FAQs</a></li>
-    <li><a href="#id_Acknowledgments">Acknowledgments</a></li>
-  </ol>
+<div class="main_content">
+  <span id="id_BEM_File_Editor" class="title_font">
+    What is the BEM File Editor?
+  </span>
+  
+  <hr class="short_hr">
+  
+  <span class="text_font">
+    The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the <a href="https://energyplus.net/" target="_blank" class="text_anchors text_font">EnergyPlus</a> whole building energy simulation program. The BEM File Editor installers do not contain any version of the EnergyPlus simulation program. Each version of EnergyPlus you want to use must be installed separately.
+  </span>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <span class="subtitle_font">
+    Why release the BEM File Editor and YouTube videos for free?
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="text_font">
+    Very simple. I work as a consultant for EnergyPlus projects with the BEM File Editor and <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> serving as free advertising. (See the <a href="#id_Consulting" class="text_anchors text_font">BEM Instructionals Consulting</a> section of this website or use <span class="email_text">mitchaldichter@beminstructionals.com</span> to contact me directly.) There was a large upfront time investment to make the BEM File Editor, some code maintenance, and I pay a <a href="https://en.wikipedia.org/wiki/Code_signing" target="_blank" class="text_anchors text_font">Code Signing Certificate</a> (assures the user and OS that my software is safe) and other fees of about $1,000 annually, but the costs are well worth the amount of paid work they bring in. Plus, the <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> demonstrate that I am a competent EnergyPlus modeler, while the BEM File Editor code shows that I'm a good programmer.
+  </span>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <div id="tabs_and_features_container">
+    <div id="tabs_and_features_left_column">
+      <span class="title_font">
+        Tabs &amp; Features
+      </span>
+      
+      <br>
+      
+      <button id="id_button_General" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        General
+      </button>
+      <br>
+      <button id="id_button_EnergyPlus_console" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        EnergyPlus console Tab
+      </button>
+      <br>
+      <button id="id_button_Editor" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        Editor Tab
+      </button>
+      <br>
+      <button id="id_button_Geometry" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        Geometry Tab
+      </button>
+      <br>
+      <button id="id_button_Node_Connections" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        Node Connections Tab
+      </button>
+      <br>
+      <button id="id_button_Text_Output_File" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        Text Output File Tab
+      </button>
+      <br>
+      <button id="id_button_CSV_Output_File" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        CSV Output File Tab
+      </button>
+      <br>
+      <button id="id_button_HTML_Output_File" class="tabs_and_features_button text_font" onclick="featureCellClicked(this)">
+        HTML Output File Tab
+      </button>
+    </div>
+    
+    <div id="tabs_and_features_right_column">
+      <div id="id_div_General" style="display: none;">
+        <span class="title_font">
+          General
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li><b>Cross-Platform</b> - Installers for Windows, macOS, and Ubuntu. Can also be run with Python directly.</li>
+            <li><b>Multiple EnergyPlus Versions</b> - A single installation can open multiple EnergyPlus IDF versions via a simple drop down menu to choose the version number.</li>
+            <li><b>BSD 3-Clause License</b> - Free open-source permissive license similar to the EnergyPlus license.</li>
+            <li><b>Modern User Interface</b> - Vector graphics based fonts, choice of font family, and  font point size.</li>
+            <li><b>EV Code Signing Certificate</b> - Verifies the publisher of software, confirming both the identity of the publisher and the integrity of the code.</li>
+            <br>
+            <li>Detect if the *.idf on disk have been modified by some other program since opening in the BEM File Editor.</li>
+            <li>Help menu links to useful resources, like the I/O Reference, for the currently selected EnergyPlus version.</li>
+          </ul>
+        </span>
+      </div>
+      
+      <div id="id_div_EnergyPlus_console" style="display: none;">
+        <span class="title_font">
+          EnergyPlus console Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>Simulates the current IDF and EPW file with the selected EnergyPlus version.</li>
+            <li>Shows real-time console output of the EnergyPlus engine.</li>
+            <li>Button to terminate the current simulation.</li>
+            <li>Keyboard shortcut (Shift + Space) to start simulation.</li>
+          </ul>
+        </span>
+          
+        <a href="EnergyPlus_console_tab_example.png" target="_blank"><img src="EnergyPlus_console_tab_example.png" alt="EnergyPlus_console_tab_example" class="features_and_tab_img"></a>
+      </div>
+      
+      <div id="id_div_Editor" style="display: none;">
+        <span class="title_font">
+          Editor Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>Two object tables for easy copy-pasting of fields between objects in different classes.</li>
+            <li>Find and replace text in object fields.</li>
+            <li>Undo and redo with history and preview of changes.</li>
+            <li>Search feature for field choices like nodes, object names, et cetera.</li>
+            <li>Right-click on an object text field displays options for the input, like minimum, default, autosize, and Field Choices.</li>
+            <li>New, Delete, Copy, and Paste buttons for objects.</li>
+            <li>Toggle between SI and IP units.</li>
+            <li>Highlights incorrect cells.</li>
+          </ul>
+        </span>
+          
+        <a href="Editor_tab_example.png" target="_blank"><img src="Editor_tab_example.png" alt="Editor_tab_example" class="features_and_tab_img"></a>
+      </div>
+      
+      <div id="id_div_Geometry" style="display: none;">
+        <span class="title_font">
+          Geometry Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>View building geometry defined by the vertices of objects.</li>
+            <li>The exterior and interior side of a surface are a darker and lighter shade to verify that the object vertex order matches the specified EnergyPlus vertex order.</li>
+            <li>Pan, rotate, and zoom with mouse.</li>
+            <li>Alternatively specify the camera position and center of view in the left menu.</li>
+            <li>Compatible with BuildingSurface:Detailed, FenestrationSurface:Detailed, Shading:Site:Detailed, and Daylighting:ReferencePoint objects.</li>
+            <li>Toggle Axes, Wireframe of hidden surfaces, and Implicit Surfaces (REVERSED prefix).</li>
+            <li>Left selection tree can toggle surface groups based on object fields.</li>
+            <li>Useful for checking all surfaces have the intended Construction, Zone, Surface Type, Outisde Boundary Condition, Sun Exposure, Wind Exposure.</li>
+            <li>Displays 3D axes x, y, z as red, green, blue and the North Axis as orange.</li>
+          </ul>
+        </span>
+        
+        <a href="Geometry_tab_example.png" target="_blank"><img src="Geometry_tab_example.png" alt="Editor_tab_example" class="features_and_tab_img"></a>
+      </div>
+      
+      <div id="id_div_Node_Connections" style="display: none;">
+        <span class="title_font">
+          Node Connections Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>Draggable text boxes for objects, nodes, and fields with pan and zoom.</li>
+            <li>Selector for all existing objects with node name fields.</li>
+            <li>Field text boxes can be automatically or manually placed.</li>
+            <li>Double-click text box to display all connected nodes/objects.</li>
+            <li>Right-click text box to show/hide individual connections.</li>
+            <li>Useful for graphing an example *.idf you didn't create.</li>
+            <li>Make a loop from scratch and view as you go.</li>
+            <li>Finding errors in the graph is much easier than following node names in object fields.</li>
+          </ul>
+        </span>
+        
+        <a href="Node_Connections_tab_example.png" target="_blank"><img src="Node_Connections_tab_example.png" alt="Node_Connections_tab_example" class="features_and_tab_img"></a>
+      </div>
+      
+      <div id="id_div_Text_Output_File" style="display: none;">
+        <span class="title_font">
+          Text Output File Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>Display file in the *.idf directory in plain text.</li>
+            <li>Text search on the file.</li>
+            <li>File names can be specified in View->Application Settings.</li>
+          </ul>
+        </span>
+          
+        <a href="eplusout_err_text_tab_example.png" target="_blank"><img src="eplusout_err_text_tab_example.png" alt="Text_Output_File_tab_example" class="features_and_tab_img"></a>
+      </div>
+      
+      <div id="id_div_CSV_Output_File" style="display: none;">
+        <span class="title_font">
+          CSV Output File Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>Display file in the *.idf directory as a table of CSV cells.</li>
+            <li>Text search on the file.</li>
+            <li>File names can be specified in View->Application Settings.</li>
+          </ul>
+        </span>
+        
+        <a href="eplusout_eio_csv_tab_example.png" target="_blank"><img src="eplusout_eio_csv_tab_example.png" alt="CSV_Output_File_tab_example" class="features_and_tab_img"></a>
+      </div>
+      
+      <div id="id_div_HTML_Output_File" style="display: none;">
+        <span class="title_font">
+          HTML Output File Tab
+        </span>
+        <hr class="tabs_and_features_hr">
+        <span class="text_font">
+          <ul>
+            <li>Display file in the *.idf directory as a webpage.</li>
+            <li>Text search on the file.</li>
+            <li>File names can be specified in View->Application Settings.</li>
+          </ul>
+        </span>
+        
+        <a href="eplusout_htm_html_tab_example.png" target="_blank"><img src="eplusout_htm_html_tab_example.png" alt="HTML_Output_File_tab_example" class="features_and_tab_img"></a>
+      </div>
+    </div>
   </div>
   
-<div id="left_empty_column"></div>
-  <div id="right_content">
-    <h1 id="id_BEM_File_Editor">BEM File Editor</h1>
-    
-      <h2 style="padding-left: 1em;" id="id_About">About</h2>
-        <p style="padding-left: 2em;">The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the <a href="https://energyplus.net/" target="_blank" style="text-decoration: underline; color: blue;">EnergyPlus</a> whole building energy simulation program. The BEM File Editor installer does not contain any version of the EnergyPlus simulation program. Each version of EnergyPlus you want to use must be installed separately.</p>
-        <h3 style="padding-left: 2em;" id="id_Editor_Tab">Editor Tab</h3>
-        <img src="Editor_tab_example.png" alt="Editor_tab_example" class="center_img">
-        <h3 style="padding-left: 2em;" id="id_Geometry_Tab">Geometry Tab</h3>
-        <img src="Geometry_tab_example.png" alt="Editor_tab_example" class="center_img">
-        <h3 style="padding-left: 2em;" id="id_Node_Connections_Tab">Node Connections Tab</h3>
-        <img src="Node_Connections_tab_example.png" alt="Node_Connections_tab_example" class="center_img">
+  <br>
+  
+  <span class="subtitle_font">
+    Licenses
+  </span>
+  <br>
+  <span class="text_font">
+    <ul>
+      <li>The BEM File Editor main.py code is licensed under a BSD-3-Clause license. See the <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/blob/master/LICENSE.md" target="_blank" class="text_anchors">LICENSE</a> file for details.</li>
+      <li>The code is available on the <a href="https://github.com/beminstructionals/beminstructionals.github.io" target="_blank" class="text_anchors">BEM Instructionals GitHub repo</a>.</li>
+      <li>The BEM Instructionals logo is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="text_anchors">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</li>
+      <li>PySide6 is licensed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text" target="_blank" class="text_anchors">GNU Lesser General Public License version 3</a>.</li>
+    </ul>
+  </span>
+  
+  <span class="subtitle_font">
+    Acknowledgments
+  </span>
+  <br>
+  <br>
+  <span class="text_font">
+    The BEM File Editor was inspired by the <a href="https://github.com/mattdoiron/idfplus" target="_blank" class="text_anchors">IDF+ Editor</a> created by Matt Doiron.<br>
+    <!--A big Thank You! to all users who document and report bugs and annoying behavior when they occur.-->
+  </span>
+  
+  <br>
+  <br>
+  
+  <span id="id_Downloads" class="title_font">
+    Downloads
+  </span>
+  <hr class="short_hr">
+  
+  <div id="downloads_licenses_acknowledgments_container">
+    <div id="downloads_licenses_acknowledgments_left_column">
+      <br>
       
-      <h2 style="padding-left: 1em;" id="id_Licenses">Licenses</h2>
-        <p style="padding-left: 2em;">The BEM File Editor main.py code is licensed under a BSD-3-Clause license. See the <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/blob/master/LICENSE.md" target="_blank" style="text-decoration: underline; color: blue;">LICENSE</a> file for details.</p>
-        <p style="padding-left: 2em;">The code is available on the <a href="https://github.com/beminstructionals/beminstructionals.github.io" target="_blank" style="text-decoration: underline; color: blue;">BEM Instructionals GitHub repo</a>.</p>
-        <p style="padding-left: 2em;">The BEM Instructionals logo is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="text-decoration: underline; color: blue;">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</p>
-        <p style="padding-left: 2em;">PySide6 is licensed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text" target="_blank" style="text-decoration: underline; color: blue;">GNU Lesser General Public License version 3</a>.</p>
-    
-      <h2 style="padding-left: 1em;" id="id_Downloads">Downloads</h2>
-        
-        <h3 style="padding-left: 2em;" id="id_Installers">Installers for Version 1.3.0</h3>
-        <table>
-          <tr>
-            <td><img src="Microsoft_logo.svg" alt="Windows logo" style="height:1.5em;vertical-align:middle;padding-bottom:0.2em;"> Windows 11 x86_64</td>
-            <td><img src="Apple_logo_grey.svg" alt="Apple logo" style="height:1.5em;vertical-align:middle;padding-bottom:0.2em;"> macOS Sequoia ARM64</td>
-            <td><img src="Logo-ubuntu_cof-orange-hex.svg" alt="Ubuntu logo" style="height:1.5em;vertical-align:middle;padding-bottom:0.2em;"> Ubuntu 24.04.2 LTS amd64</td>
-          </tr>
-          <tr>
-            <td><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor-Setup.exe" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor-Setup.exe</a></td>
-            <td><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor.dmg" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.dmg</a></td>
-            <td><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor.deb" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor.deb</a></td>
-          </tr>
-        </table>
-        
-        <h3 style="padding-left: 2em;" id="id_Run_using_Python_without_Installing">Run using Python without Installing</h3>
-          <p style="padding-left: 3em;">Download <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.3.0/BEM-File-Editor-1.3.0.zip" target="_blank" style="text-decoration: underline; color: blue;">BEM-File-Editor-1.3.0.zip</a></p>
-          <p style="padding-left: 3em;">This option is useful for users with employers that limit what can be installed on their computer and for uncommon or older operating systems. Steps are to install Pyside6 using "pip install pyside6", then "python main.py" to start the BEM File Editor. (Using Python 3.13 is recommended for compatibility.)</p>
-          
-      <h2 style="padding-left: 1em;" id="id_Consulting">Consulting</h2>
-        <p style="padding-left: 2em;">I work as a consultant in the energy industry creating EnergyPlus models for clients and automating the generation of thousands to millions of building models, their simulation, and performance analysis. If you need EnergyPlus modeling for a project, support learning EnergyPlus, or as needed technical assistance, you can contact me at <a href="mailto:mitchaldichter@beminstructionals.com" style="text-decoration: underline; color: blue;">mitchaldichter@beminstructionals.com</a>.</p>
-        
-      <h2 style="padding-left: 1em;" id="id_Learning_Resources">Learning Resources</h2>
-        
-        <h3 style="padding-left: 2em;" id="id_BEM_Instructionals_YouTube_Channel"><a href="https://www.youtube.com/@BEMInstructionals" target="_blank" style="text-decoration: underline; color: blue;">BEM Instructionals YouTube Channel <img class="inline_youtube_icon" alt="youtube icon" src="youtube_icon.svg"></a></h3>
-          <p style="padding-left: 3em;">The real purpose of this webpage is to organize the YouTube videos. Right now there is a tour of the BEM File Editor. More videos to come soon.</p>
-          <a href="https://www.youtube.com/@BEMInstructionals" target="_blank"><img src="youtube_channel_screenshot.png" alt="youtube_channel_screenshot" class="center_img" style="max-width:50%;"></a>
-        
-        <h3 style="padding-left: 2em;" id="id_UnmetHours_com"><a href="https://unmethours.com/questions/" target="_blank" style="text-decoration: underline; color: blue;">UnmetHours.com</a></h3>
-          <p style="padding-left: 3em;">Unmet Hours is a forum for the building energy modeling community, mostly focusing on EnergyPlus and programs that use EnergyPlus. If you have a question, you can search for the answer, or post your own question. If you want me to receive an email notification when you post something, include "@Mitchal Dichter" in the text without the quotes. You'll know it worked if the <span style="color: #1b79bd">@Mitchal Dichter</span> text turns blue shortly after you post.</p>
-          
-      <h2 style="padding-left: 1em;" id="id_Reporting_Bugs">Reporting Bugs</h2>
-        
-          <h3 style="padding-left: 2em;" id="id_Reporting_Bugs_BEM_File_Editor">BEM File Editor</h3>
-          <p style="padding-left: 2em;">I have tested the most on Windows 11 because that is the OS I develop on, and I do test new features on macOS and Ubuntu, but I suspect there are still some bugs and annoying behaviors lurking in the code. If you encounter a bug in the BEM File Editor, you can try viewing the console output by enabling the View->Application Settings "Show Python Console Tab" checkbox. If there is no exception thrown then I probably made a logical error in the code, in which case all you'll see in the "python console" tab is datetimes of when the BEM File Editor was opened. In both cases, please document the steps to reproduce the behavior, <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on the BEM File Editor GitHub repo</a>, and I will try to fix it.</p>
-          
-          <h3 style="padding-left: 2em;" id="id_Reporting_Bugs_EnergyPlus">EnergyPlus</h3>
-            <p style="padding-left: 3em;">EnergyPlus is completely separate from the BEM File Editor, so if you think you've found a bug with one of the EnergyPlus programs, you can <a href="https://github.com/NREL/EnergyPlus/issues" target="_blank" style="text-decoration: underline; color: blue;">create an issue on the EnergyPlus GitHub repo</a>.</p>
+      <span class="subtitle_font">
+        Installers for Version 1.4.0
+      </span>
       
-      <h2 style="padding-left: 1em;" id="id_FAQs">FAQs</h2>
-        
-        <h3 style="padding-left: 3em;">How do I associate *.idf files with the BEM File Editor?</h3>
-          <p style="padding-left: 4em;">That will depend on your OS, but your computer stores a list of each default program to open specific file types when double clicked. There will be a way in your OS to choose the BEM File Editor to an open an *.idf file instead of the default IDF Editor that comes with EnergyPlus and further set the BEM File Editor as the default program to open *.idf files with.</p>
-        
-        <h3 style="padding-left: 3em;">Why does my OS ask if I trust the software during installation?</h3>
-          <p style="padding-left: 4em;">The installers for commercial software use a code signing certificate to verify the authenticity and integrity of the software being installed. These can be purchased from certificate authorities and typically cost hundreds of dollars per year. Small open-source projects can't always afford this and the user has to go through some extra steps from the OS making sure the user trusts the software being installed.</p>
-          <p style="padding-left: 4em;">I might purchase a code signing certificate in the future, or hopefully find a more affordable option for open-source projects, but for now you have to go through the extra steps from your OS. Just make sure to download the software directly from this webpage or the <a href="https://github.com/beminstructionals/beminstructionals.github.io" target="_blank" style="text-decoration: underline; color: blue;">BEM Instructionals GitHub repo</a>.</p>
+      <br>
+      
+      <table class="text_font">
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td rowspan="2" class="installers_td"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
+          <td class="installers_td">Windows 11 x86_64</td>
+        </tr>
+        <tr>
+          <td class="installers_td"><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-Setup.exe" target="_blank" class="text_anchors">BEM-File-Editor-Setup.exe</a></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td rowspan="2" class="installers_td"><img src="Apple_logo_grey.svg" alt="Apple logo" class="installers_os_img"></td>
+          <td class="installers_td">macOS Sequoia ARM64</td>
+        </tr>
+        <tr>
+          <td class="installers_td"><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor.dmg" target="_blank" class="text_anchors">BEM-File-Editor.dmg</a></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td rowspan="2" class="installers_td"><img src="Logo-ubuntu_cof-orange-hex.svg" alt="Ubuntu logo" class="installers_os_img"></td>
+          <td class="installers_td">Ubuntu 24.04.3 LTS amd64</td>
+        </tr>
+        <tr>
+          <td class="installers_td"><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor.deb" target="_blank" class="text_anchors">BEM-File-Editor.deb</a></td>
+        </tr>
+      </table>
+      
+      <br>
+    </div>
     
-        <h3 style="padding-left: 3em;">Why are some features missing?</h3>
-          <p style="padding-left: 4em;">The BEM File Editor is out of beta, but there are still some features I want to implement, such as a building geometry viewer. Then there are some features from the IDF Editor that comes with an EnergyPlus installation I will likely never implement because they don't quite fit into the default behavior of PySide6 standard UI elements, or because I've never that used it before, such as File-&gt;Save Options...</p>
-          <p style="padding-left: 4em;">However, I will take into consideration feedback from users if there is a highly desired feature.</p>
+    <div id="downloads_licenses_acknowledgments_right_column">
+      <br>
+      
+      <div class="text_font downloads_licenses_acknowledgments_indented_content">
+        <span class="subtitle_font">
+          Run using Python without Installing
+        </span>
         
-        <h3 style="padding-left: 3em;">What is the "EnergyPlus temp files" folder in my *.idf directory?</h3>
-          <p style="padding-left: 4em;">When the EnergyPlus program is run, some temporary files are created, such as readvars.audit, and then deleted when the simulation finishes. These files have to be located somewhere, so I decided to put them in the same directory as the *.idf being simulated because the BEM File Editor should have the permissions to create, write to, and delete files in that directory. These files are simply temporary files created by the EnergyPlus program when running.</p>
+        <br>
         
-        <h3 style="padding-left: 3em;">Why are some table cells colored orange for invalid but the IDF still runs?</h3>
-          <p style="padding-left: 4em;">The "Fraction" and "fraction" cells actually refer to the same object, but the EnergyPlus simulation program is case insensitive for this object name in a Schedule:Compact, but that isn't true for all fields in all objects.</p>
-          <img src="improper_invalid_capitalization.png" alt="improper_invalid_capitalization" class="center_img">
-          <p style="padding-left: 4em;">Rather than try to imitate the rules of the IDF Editor for which fields are case sensitive and which fields are case insensitive, I decided to treat every reference as case sensitive so that there would be some false positive, but no false negative, validation of reference names. In other words, a white cell referencing another object by name should always be correct, but an orange cell referencing another object by name signifies the name isn't an exact match but may still run without error in EnergyPlus because the name is case insensitive.</p>
+        <div class="text_font downloads_licenses_acknowledgments_indented_content">
+          <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-1.4.0.zip" target="_blank"><img src="zip_icon.webp" alt="zip_icon" class="installers_zip_img"></a> <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-1.4.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.4.0.zip</a>
+          <br>
+          This option is useful for users with employers that limit what can be installed on their computer and for uncommon or older operating systems.
+          <ol style="margin: 0px;">
+            <li>Install PySide6 using "pip install pyside6".</li>
+            <li>Run "python main.py" to start the BEM File Editor.</li>
+          </ol>
+          <i>Using Python 3.13 is recommended for compatibility.</i>
+        </div>
+      </div>
         
-        <h3 style="padding-left: 3em;">Why is my computer deleting the installation files?</h3>
-          <p style="padding-left: 4em;">The installed files are likely being removed because the OS has flagged those files as potentially malicious, and the OS tends to error on the side of caution rather than have truly malicious software remain on your computer. This appears to be a persistent problem with software made with pyinstaller, which is what the BEM File Editor uses. This is because people who really do make malicious software will also use pyinstaller because it's so easy.</p>
-          <p style="padding-left: 4em;">This is expected to be a reoccurring problem and each time it happens, I'll have to submit the installed files for review, wait for approval, and for your OS to receive a security update.</p>
-          <p style="padding-left: 4em;">If you encounter this problem, please let me know and I'll try to get it fixed as soon as possible.</p>
-          <p style="padding-left: 4em;">If you would rather have the BEM File Editor installed files remain on your computer, you can manually specify your OS to ignore them as potential malicious software.</p>
-        
-        <h3 style="padding-left: 3em;">Why does the "python console" tab not display the log file immediately but has to be manually refreshed instead?</h3>
-          <p style="padding-left: 4em;">I intentionally made the "python console" tab behavior as basic as possible because it's meant to display errors during program execution. If I had an automatic system to refresh the "python console" tab, that could stop working due to another error occurring in the software. Hence, the "python console" tab has to be manually refreshed.</p>
-        
-      <h2 style="padding-left: 1em;" id="id_Acknowledgments">Acknowledgments</h2>
-        <p style="padding-left: 2em;">The BEM File Editor was inspired by the <a href="https://github.com/mattdoiron/idfplus" target="_blank" style="text-decoration: underline; color: blue;">IDF+ Editor</a> created by Matt Doiron.</p>
-        <p style="padding-left: 2em;">A big Thank You! to all users who document and report bugs and annoying behavior when they occur.</p>
+    </div>
   </div>
+  
+  <br>
+  <br>
+  <br>
+  
+  <span id="id_Consulting" class="title_font">
+    Consulting
+  </span>
+  <hr class="short_hr">
+  
+  <br>
+  
+  <span class="text_font">
+    I work as a consultant in the energy industry creating EnergyPlus models for clients and automating the generation of thousands to millions of building models, their simulation, and performance analysis. If you need EnergyPlus modeling for a project, support learning EnergyPlus, or as needed technical assistance, you can contact me at <span class="email_text">mitchaldichter@beminstructionals.com</span>.
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="subtitle_font">
+    Why pay for EnergyPlus consulting?
+  </span>
+        
+  <span class="text_font">
+    <ul>
+      <li>EnergyPlus has a steep learning curve and the time investment to have an engineer learn EnergyPlus is costly, especially if there isn't consistent EnergyPlus modeling needed on future projects. There might not even be enough person-hours available for EnergyPlus training while still completing the project on time.</li>
+      <li>Even for experienced EnergyPlus modelers, creating or modifying a model is tedious. Most engineers simply do not want to do it.</li>
+      <li>Trying to model a new or uncommon technology in EnergyPlus that doesn't quite fit into any existing object class is another level of difficulty. It can be done with things like co-simulation and a Python equipment model, but that is not without problems.</li>
+      <!--<li>automation</li>-->
+    </ul>
+  </span>
+  
+  <span class="subtitle_font">
+    Rates
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="text_font">
+    My rates are variable, ranging from a typical consulting fee to as low as the hourly cost of hiring me as an employee. On demand support with no set amount of weekly hours is the most expensive, while a guaranteed number of weekly hours working on a project for months, or even years, is the least expensive. The value of a stable income is absolutely reflected in my hourly rate.
+  </span>
+  
+  <br>
+  <br>
+  <br>
+  
+  <span id="id_Learning_Resources" class="title_font">
+    Learning Resources
+  </span>
+  <hr class="short_hr">
+  
+  <br>
+  
+  <span class="subtitle_font">
+    <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">BEM Instructionals YouTube Channel</a> <a href="https://www.youtube.com/@BEMInstructionals" target="_blank"><img class="inline_youtube_icon" alt="youtube icon" src="youtube_icon.svg"></a>
+  </span>
+  
+  <br>
+  <br>
+  
+  <div style="margin-left: 15%;">
+    <a href="https://www.youtube.com/@BEMInstructionals" target="_blank"><img src="youtube_channel_screenshot.png" alt="youtube_channel_screenshot" style="width: 70%;"></a>
+  </div>
+  
+  <br>
+  <br>
+  
+  <span class="subtitle_font">
+    <a href="https://unmethours.com/questions/" target="_blank" class="text_anchors">UnmetHours.com</a>
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="text_font">
+    Unmet Hours is a forum for the building energy modeling community, mostly focusing on EnergyPlus and programs that use EnergyPlus. If you have a question, you can search for the answer, or post your own question. If you want me to receive an email notification when you post something, include "@Mitchal Dichter" in the text without the quotes. You'll know it worked if the <a href="https://unmethours.com/users/2900/mitchal-dichter/" target="_blank" class="email_text" style="text-decoration: none;">@Mitchal Dichter</a> text turns blue shortly after you post.
+  </span>
+  
+  <br>
+  <br>
+  
+  <span id="id_Contact" class="title_font">
+    Contact
+  </span>
+  <hr class="short_hr">
+  
+  <div class="contact_div">
+    <div class="contact_left_column">
+      <img src="linkedin_image.png" alt="Profile Image" width=300 style="max-width:100%;">
+      <br>
+      <span class="subtitle_font">
+        Mitchal Dichter
+      </span>
+      <br>
+      <span class="text_font">
+        EnergyPlus Consultant
+      </span>
+    </div>
+    
+    <div class="contact_right_column">
+      <span class="subtitle_font">
+        Reach out today for EnergyPlus modeling for a project, support learning EnergyPlus, or technical assistance. <span class="email_text">mitchaldichter@beminstructionals.com</span>
+      </span>
+      
+      <br>
+      <br>
+      
+      <span class="text_font">
+        My career in the energy industry started at the UC Davis Western Cooling Efficiency Center (WCEC) in 2017. My work at the WCEC was focused on behind the meter energy usage and efficiency technologies. The main project I worked on was to generate millions of EnergyPlus models from parametrically combining different energy efficiency technologies on different commercial building types in multiple climate zones, running them all on a UC Davis compute cluster. Other projects I worked on included modeling a novel ground source heat pump in Python and co-simulation with an EnergyPlus building model, wrote linear programming models of electric utility tariffs for optimization of battery control in buildings using the Python PuLP package, and determining the building construction components that made phase change materials effective.
+      </span>
+      
+      <p align="right" class="text_font">
+        MSc Applied Mathematics&nbsp;&nbsp;|&nbsp;&nbsp;BS Computer Science<br>
+        <a href="https://www.linkedin.com/in/mitchaldichter/" target="_blank"><img class="inline_icon" alt="LinkedIn icon" src="linkedin_icon.svg"></a> <a href="https://www.linkedin.com/in/mitchaldichter/" target="_blank" class="text_anchors">LinkedIn Page</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://github.com/mitchaldichter" target="_blank"><img class="inline_icon" alt="GitHub icon" src="github_icon.svg"></a> <a href="https://github.com/mitchaldichter" target="_blank" class="text_anchors">GitHub Projects</a>
+      </p>
+    </div>
+  </div>
+  
+  <span class="text_font">
+    Copyright &copy; 2025 Mitchal Dichter, LLC.
+  </span>
+  
 </div>
 </body>
 </html>
-
-
-
-
-
-
