@@ -203,7 +203,15 @@ hr {
   padding-bottom: 0.1em;
 }
 
-.youtube_table{
+.youtube_channel_screenshot_div {
+  margin-left: 15%;
+}
+
+.youtube_channel_screenshot {
+  width: 70%;
+}
+
+.youtube_table {
   margin-left: auto;
   margin-right: auto;
   
@@ -246,6 +254,162 @@ hr {
   height: 1.5em;
   vertical-align:middle;
   padding-bottom: 0.1em;
+}
+
+@media screen and (orientation: portrait) {
+  body {
+      background-repeat: repeat;
+  }
+  
+  .title_font {
+    font-size: 20pt;
+  }
+
+  .subtitle_font {
+    font-size: 10pt;
+  }
+
+  .text_font {
+    font-size: 8pt;
+  }
+  
+  .navigation_bar_anchors_div {
+    line-height: 5vh;
+  }
+  
+  .main_content {
+    width: 95%;
+  }
+  
+  #tabs_and_features_left_column {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  #tabs_and_features_right_column {
+    float: none;
+    width: 100%;
+  }
+  
+  #downloads_licenses_acknowledgments_left_column {
+    float: none;
+    width: 100%;
+    
+    margin-left: 0%;
+    padding-right: 0%;
+    border-right: 0px solid #AADADF;
+  }
+
+  #downloads_licenses_acknowledgments_right_column {
+    float: none;
+    width: 100%;
+    margin-left: 0%;
+  }
+  
+  .downloads_licenses_acknowledgments_indented_content {
+    padding-left: 0em;
+  }
+  
+  .youtube_channel_screenshot_div {
+    margin-left: 0%;
+  }
+  
+  .youtube_channel_screenshot {
+    width: 100%;
+  }
+  
+  .youtube_table {
+    display: none;
+  }
+  
+  .contact_left_column {
+    float: none;
+    width: 100%;
+    
+    margin-bottom: 20px;
+  }
+
+  .contact_right_column {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 1079px) {
+  body {
+      background-repeat: repeat;
+  }
+  
+  .title_font {
+    font-size: 24pt;
+  }
+
+  .subtitle_font {
+    font-size: 16pt;
+  }
+
+  .text_font {
+    font-size: 12pt;
+  }
+  
+  .main_content {
+    width: 95%;
+  }
+  
+  #tabs_and_features_left_column {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  #tabs_and_features_right_column {
+    float: none;
+    width: 100%;
+  }
+  
+  #downloads_licenses_acknowledgments_left_column {
+    float: none;
+    width: 100%;
+    
+    margin-left: 0%;
+    padding-right: 0%;
+    border-right: 0px solid #AADADF;
+  }
+
+  #downloads_licenses_acknowledgments_right_column {
+    float: none;
+    width: 100%;
+    margin-left: 0%;
+  }
+  
+  .downloads_licenses_acknowledgments_indented_content {
+    padding-left: 0em;
+  }
+  
+  .youtube_channel_screenshot_div {
+    margin-left: 0%;
+  }
+  
+  .youtube_channel_screenshot {
+    width: 100%;
+  }
+  
+  .youtube_table {
+    display: none;
+  }
+  
+  .contact_left_column {
+    float: none;
+    width: 100%;
+    
+    margin-bottom: 20px;
+  }
+
+  .contact_right_column {
+    float: none;
+    width: 100%;
+  }
 }
 </style>
 
@@ -311,7 +475,7 @@ window.onload = function() {
   <br>
   
   <span class="text_font">
-    Very simple. I work as a consultant for EnergyPlus projects with the BEM File Editor and <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> serving as free advertising. (See the <a href="#id_Consulting" class="text_anchors text_font">BEM Instructionals Consulting</a> section of this website or use <span class="email_text">mitchaldichter@beminstructionals.com</span> to contact me directly.) There was a large upfront time investment to make the BEM File Editor, some code maintenance, and I pay a <a href="https://en.wikipedia.org/wiki/Code_signing" target="_blank" class="text_anchors text_font">Code Signing Certificate</a> (assures the user and OS that my software is safe) and other fees of about $1,000 annually, but the costs are well worth the amount of paid work they bring in. Plus, the <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> demonstrate that I am a competent EnergyPlus modeler, while the BEM File Editor code shows that I'm a good programmer.
+    Very simple. I work as a consultant for EnergyPlus projects with the BEM File Editor and <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> serving as free advertising. (See the <a href="#id_Consulting" class="text_anchors text_font">BEM Instructionals Consulting</a> section of this website or use <span class="email_text">mitchaldichter@beminstructionals.com</span> to contact me directly.) There was a large upfront time investment to make the BEM File Editor, some code maintenance, and I pay a <a href="https://en.wikipedia.org/wiki/Code_signing" target="_blank" class="text_anchors text_font">Code Signing Certificate</a> (assures the user and OS that the software is safe) and other fees of about $1,000 annually, but the costs are well worth the amount of paid work they bring in. Plus, the <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> demonstrate that I am a competent EnergyPlus modeler, while the BEM File Editor code shows that I'm a good programmer.
   </span>
   
   <br>
@@ -664,8 +828,8 @@ window.onload = function() {
   <br>
   <br>
   
-  <div style="margin-left: 15%;">
-    <a href="https://www.youtube.com/@BEMInstructionals" target="_blank"><img src="youtube_channel_screenshot.png" alt="youtube_channel_screenshot" style="width: 70%;"></a>
+  <div class="youtube_channel_screenshot_div">
+    <a href="https://www.youtube.com/@BEMInstructionals" target="_blank"><img src="youtube_channel_screenshot.png" alt="youtube_channel_screenshot" class="youtube_channel_screenshot"></a>
   </div>
   
   <br>
