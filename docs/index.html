@@ -172,29 +172,15 @@ hr {
   padding-bottom: 0.2em;
 }
 
-#downloads_licenses_acknowledgments_left_column {
-  float: left;
-  width: 30%;
+.downloads_table {
+  border-collapse: collapse;
   
-  margin-left: 10%;
-  padding-right: 5%;
-  border-right: 5px solid #AADADF;
-}
-
-#downloads_licenses_acknowledgments_right_column {
-  float: left;
-  width: 49%;
   margin-left: 5%;
+  margin-right: 5%;
 }
 
-.downloads_licenses_acknowledgments_indented_content {
-  padding-left: 1em;
-}
-
-#downloads_licenses_acknowledgments_container:after {
-  content: "";
-  display: table;
-  clear: both;
+.downloads_divider {
+  border-right: 5px solid #AADADF;
 }
 
 .inline_youtube_icon {
@@ -292,25 +278,6 @@ hr {
     width: 100%;
   }
   
-  #downloads_licenses_acknowledgments_left_column {
-    float: none;
-    width: 100%;
-    
-    margin-left: 0%;
-    padding-right: 0%;
-    border-right: 0px solid #AADADF;
-  }
-
-  #downloads_licenses_acknowledgments_right_column {
-    float: none;
-    width: 100%;
-    margin-left: 0%;
-  }
-  
-  .downloads_licenses_acknowledgments_indented_content {
-    padding-left: 0em;
-  }
-  
   .youtube_channel_screenshot_div {
     margin-left: 0%;
   }
@@ -366,25 +333,6 @@ hr {
   #tabs_and_features_right_column {
     float: none;
     width: 100%;
-  }
-  
-  #downloads_licenses_acknowledgments_left_column {
-    float: none;
-    width: 100%;
-    
-    margin-left: 0%;
-    padding-right: 0%;
-    border-right: 0px solid #AADADF;
-  }
-
-  #downloads_licenses_acknowledgments_right_column {
-    float: none;
-    width: 100%;
-    margin-left: 0%;
-  }
-  
-  .downloads_licenses_acknowledgments_indented_content {
-    padding-left: 0em;
   }
   
   .youtube_channel_screenshot_div {
@@ -532,6 +480,7 @@ window.onload = function() {
         <hr class="tabs_and_features_hr">
         <span class="text_font">
           <ul>
+            <!--<li><b>Cross-Platform</b> - Installers for Windows, macOS, and Ubuntu. Can also be run with Python directly.</li>-->
             <li><b>Multiple EnergyPlus Versions</b> - A single installation can open multiple EnergyPlus IDF versions via a simple drop down menu to choose the version number.</li>
             <li><b>BSD 3-Clause License</b> - Free open-source permissive license similar to the EnergyPlus license.</li>
             <li><b>Modern User Interface</b> - Vector graphics based fonts, choice of font family, and  font point size.</li>
@@ -707,66 +656,62 @@ window.onload = function() {
   </span>
   <hr class="short_hr">
   
-  <div id="downloads_licenses_acknowledgments_container">
-    <div id="downloads_licenses_acknowledgments_left_column">
-      <br>
-      
-      <span class="subtitle_font">
-        Installers for Version 1.4.0
-      </span>
-      
-      <br>
-      
-      <table class="text_font">
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td rowspan="2" class="installers_td"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
-          <td class="installers_td">Windows 11 x86_64</td>
-        </tr>
-        <tr>
-          <td class="installers_td"><a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-Setup.exe" target="_blank" class="text_anchors">BEM-File-Editor-Setup.exe</a></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      </table>
-      
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
+  <table class="text_font downloads_table">
+    <tr>
+      <td></td>
+      <td class="downloads_divider">&nbsp;</td>
+      <td></td>
+    </tr>
     
-    <div id="downloads_licenses_acknowledgments_right_column">
-      <br>
+    <tr>
+      <td colspan="2" class="downloads_divider" style="width:45%;">
+        <span class="subtitle_font">
+          Installer for Version 1.4.0
+        </span>
+      </td>
       
-      <div class="text_font downloads_licenses_acknowledgments_indented_content">
+      <td style="width: 5%;"></td>
+      
+      <td>
         <span class="subtitle_font">
           Run using Python without Installing
         </span>
-        
+      </td>
+    </tr>
+    
+    <tr >
+      <td rowspan="2" class="" style="text-align: right; vertical-align: top; padding-top: 1em;"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
+      <td class="downloads_divider" style="vertical-align: top; padding-left: 1em; padding-top: 1em;">
+        Windows 11 x86_64<br>
+        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-Setup.exe" target="_blank" class="text_anchors">BEM-File-Editor-Setup.exe</a>
+      </td>
+      
+      <td></td>
+      
+      <td rowspan="2" style="padding-left: 1em;">
+        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-1.4.0.zip" target="_blank"><img src="zip_icon.webp" alt="zip_icon" class="installers_zip_img"></a> <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-1.4.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.4.0.zip</a>
         <br>
-        
-        <div class="text_font downloads_licenses_acknowledgments_indented_content">
-          <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-1.4.0.zip" target="_blank"><img src="zip_icon.webp" alt="zip_icon" class="installers_zip_img"></a> <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-1.4.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.4.0.zip</a>
-          <br>
-          This option is useful for users with employers that limit what can be installed on their computer and for uncommon or older operating systems.
-          <ol style="margin: 0px;">
-            <li>Install PySide6 using "pip install pyside6".</li>
-            <li>Run "python main.py" to start the BEM File Editor.</li>
-          </ol>
-          <i>Using Python 3.13 is recommended for compatibility.</i>
-        </div>
-      </div>
-        
-    </div>
-  </div>
+        This option is useful for users with employers that limit what can be installed on their computer and for uncommon or older operating systems.
+        <ol style="margin: 0px;">
+          <li>Install PySide6 using "pip install pyside6".</li>
+          <li>Run "python main.py" to start the BEM File Editor.</li>
+        </ol>
+        <i>Using Python 3.13 is recommended for compatibility.</i>
+      </td>
+      
+    </tr>
+    <tr>
+      <td class="downloads_divider"></td>
+      
+      <td></td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="downloads_divider">&nbsp;</td>
+      <td></td>
+    </tr>
+  </table>
   
   <br>
   <br>
@@ -833,6 +778,91 @@ window.onload = function() {
   </div>
   
   <br>
+  <br>
+  <br>
+  
+  <!--<table class="youtube_table">
+    <tr>
+      <td class="youtube_td">
+        <span class="subtitle_font">
+          Video Title
+        </span>
+        <a href="https://www.youtube.com/watch?v=RFn8XjhQ8Ik" target="_blank"><img src="template_youtube_thumbnail.jpg" alt="youtube_video_thumbnail" class="youtube_img"></a>
+        <span class="text_font">
+          <ul class="youtube_ul">
+            <li>one descriptor text for the video</li>
+            <li>short line two</li>
+            <li>multiple lines three two peanuts were walking down the street and one was assaulted... peanut</li>
+          </ul>
+        </span>
+      </td>
+      <td class="youtube_td">
+        <span class="subtitle_font">
+          Video Title
+        </span>
+        <a href="https://www.youtube.com/watch?v=RFn8XjhQ8Ik" target="_blank"><img src="template_youtube_thumbnail.jpg" alt="youtube_video_thumbnail" class="youtube_img"></a>
+        <span class="text_font">
+          <ul class="youtube_ul">
+            <li>one descriptor text for the video</li>
+          </ul>
+        </span>
+      </td>
+      <td class="youtube_td">
+        <span class="subtitle_font">
+          Video Title
+        </span>
+        <a href="https://www.youtube.com/watch?v=RFn8XjhQ8Ik" target="_blank"><img src="template_youtube_thumbnail.jpg" alt="youtube_video_thumbnail" class="youtube_img"></a>
+        <span class="text_font">
+          <ul class="youtube_ul">
+            <li>one descriptor text for the video</li>
+            <li>short line two</li>
+            <li>multiple lines three two peanuts were walking down the street and one was assaulted... peanut</li>
+          </ul>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="youtube_td">
+        <span class="subtitle_font">
+          Video Title
+        </span>
+        <a href="https://www.youtube.com/watch?v=RFn8XjhQ8Ik" target="_blank"><img src="template_youtube_thumbnail.jpg" alt="youtube_video_thumbnail" class="youtube_img"></a>
+        <span class="text_font">
+          <ul class="youtube_ul">
+            <li>one descriptor text for the video</li>
+            <li>short line two</li>
+            <li>multiple lines three two peanuts were walking down the street and one was assaulted... peanut</li>
+          </ul>
+        </span>
+      </td>
+      <td class="youtube_td">
+        <span class="subtitle_font">
+          Video Title
+        </span>
+        <a href="https://www.youtube.com/watch?v=RFn8XjhQ8Ik" target="_blank"><img src="template_youtube_thumbnail.jpg" alt="youtube_video_thumbnail" class="youtube_img"></a>
+        <span class="text_font">
+          <ul class="youtube_ul">
+            <li>one descriptor text for the video</li>
+            <li>short line two</li>
+            <li>multiple lines three two peanuts were walking down the street and one was assaulted... peanut</li>
+          </ul>
+        </span>
+      </td>
+      <td class="youtube_td">
+        <span class="subtitle_font">
+          Video Title
+        </span>
+        <a href="https://www.youtube.com/watch?v=RFn8XjhQ8Ik" target="_blank"><img src="template_youtube_thumbnail.jpg" alt="youtube_video_thumbnail" class="youtube_img"></a>
+        <span class="text_font">
+          <ul class="youtube_ul">
+            <li>one descriptor text for the video</li>
+            <li>short line two</li>
+          </ul>
+        </span>
+      </td>
+    </tr>
+  </table>-->
+  
   <br>
   
   <span class="subtitle_font">
