@@ -220,6 +220,23 @@ hr {
   margin-top: 0px;
 }
 
+.pnnl_table {
+  margin-left: auto;
+  margin-right: auto;
+  
+  width:90%;
+  table-layout: fixed;
+}
+
+.pnnl_td {
+  padding: 0.5em;
+}
+
+.pnnl_img {
+  max-width: 90%;
+  height: auto;
+}
+
 .contact_div:after {
   content: "";
   display: table;
@@ -291,6 +308,10 @@ hr {
     display: none;
   }
   
+  .pnnl_table {
+    display: none;
+  }
+  
   .contact_left_column {
     float: none;
     width: 100%;
@@ -345,6 +366,10 @@ hr {
   }
   
   .youtube_table {
+    display: none;
+  }
+  
+  .pnnl_table {
     display: none;
   }
   
@@ -681,7 +706,7 @@ window.onload = function() {
     </tr>
     
     <tr >
-      <td rowspan="2" class="" style="text-align: right; vertical-align: top; padding-top: 1em;"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
+      <td rowspan="2" style="text-align: right; vertical-align: top; padding-top: 1em;"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
       <td class="downloads_divider" style="vertical-align: top; padding-left: 1em; padding-top: 1em;">
         Windows 11 x86_64<br>
         <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.4.0/BEM-File-Editor-Setup.exe" target="_blank" class="text_anchors">BEM-File-Editor-Setup.exe</a>
@@ -869,6 +894,23 @@ window.onload = function() {
   <br>
   
   <span class="subtitle_font">
+    Example IDFs and Documentation in the EnergyPlus Installation Directory
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="text_font">
+    The "ExampleFiles" directory contains IDFs that showcase how to use particular objects in an EnergyPlus model. This gives a working example that you can then migrate to your own IDF file.<!-- mention ExampleFiles.html and ExampleFiles-ObjectsLink.html, add in link to giant CSV for grid of IDF names and object type with the number of the object type, blank for zero--><br>
+    <br>
+    The "Documentation" directory has files like EngineeringReference.pdf, GettingStarted.pdf, InputOutputReference.pdf, and others. The most useful file overall is probably the InputOutputReference.pdf, but it's more of a reference. Some of the other files are more helpful when first starting to use EnergyPlus.
+  </span>
+  
+  <br>
+  <br>
+  <br>
+  
+  <span class="subtitle_font">
     <a href="https://unmethours.com/questions/" target="_blank" class="text_anchors">UnmetHours.com</a>
   </span>
   
@@ -879,6 +921,151 @@ window.onload = function() {
     Unmet Hours is a forum for the building energy modeling community, mostly focusing on EnergyPlus and programs that use EnergyPlus. If you have a question, you can search for the answer, or post your own question. If you want me to receive an email notification when you post something, include "@Mitchal Dichter" in the text without the quotes. You'll know it worked if the <a href="https://unmethours.com/users/2900/mitchal-dichter/" target="_blank" class="email_text" style="text-decoration: none;">@Mitchal Dichter</a> text turns blue shortly after you post.
   </span>
   
+  <br>
+  <br>
+  <br>
+  
+  <span class="subtitle_font">
+    Prototype Models Created by the Government
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="text_font">
+    For years, the DOE has funded the creation and updating of building models in EnergyPlus. These building models cover a variety of commercial and residential building types, meant to be representative of a significant portion of all existing buildings in the US. The models are updated periodically to simulate energy savings associated with changes in energy codes and standards.<br>
+    <br>
+    For researchers, the models are useful as base models to investigate changes in construction, equipment, and controls on energy use and utility bills. Two of the most useful parts of each building model are the overall geometry and schedules specified in the IDF file. Researchers can have confidence that the parts of the model that can't easily be calculated or looked up, such as the behavior of people in the building and thermostat setpoints, were rigorously investigated for each building type.<br>
+    <br>
+    <a href="https://www.energy.gov/eere/buildings/commercial-reference-buildings" target="_blank" class="text_anchors">DOE Commercial Reference Buildings</a><br>
+    The above linked site has prior versions of the building models, split up into Pre-1980, Post-1980, and New Construction last updated in 2012. The PNNL models built upon the DOE models and added some new building types.<br>
+    <i>References and citations can be found as comments in the IDF files opened with a basic text editor.</i><br>
+    
+    <br>
+    
+    <a href="https://www.energycodes.gov/prototype-building-models" target="_blank" class="text_anchors">PNNL Prototype Building Models</a><br>
+    The most recent version of the building models at the above link have three categories and multiple building types.<br>
+    The IDFs were upgraded to EnergyPlus version 24.2 and then the OpenStudio Application 1.9.0 was used to displayed them.<br>
+    <i>Some IDFs had the text "For: " removed from some Schedule objects in order to be imported into the OpenStudio Application.</i><br>
+    <i>References and citations can be found as comments in the IDF files opened with a basic text editor.</i><br>
+    <br>
+    You'll notice some of the building geometries in the models have floating floors, missing rooms, or both. This was intentional to speed up simulation time by explicitly modeling a single thermal zone and then using the Multiplier field in some objects to account for all the duplicate thermal zones as if they were all explicitly modeled. It works, but can be tricky to get right, such as when using cooled and heated water to condition air at the terminal unit in multiplied zones. Accounting for total air flow on a shared fan, or extra water flow for a pump, can be difficult to specify correctly in the EnergyPlus model.
+  </span>
+    
+  <br>
+  <br>
+    
+  <table class="pnnl_table text_font">
+    <tr>
+      <td class="pnnl_td">
+        Commercial<br>Small Office
+        <img src="PNNL Commercial Small Office.png" alt="PNNL Commercial Small Office" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Medium Office
+        <img src="PNNL Commercial Medium Office.png" alt="PNNL Commercial Medium Office" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Large Office
+        <img src="PNNL Commercial Large Office.png" alt="PNNL Commercial Large Office" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Stand-alone Retail
+        <img src="PNNL Commercial Stand-alone Retail.png" alt="PNNL Commercial Stand-alone Retail" class="pnnl_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="pnnl_td">
+        Commercial<br>Strip Mall
+        <img src="PNNL Commercial Strip Mall.png" alt="PNNL Commercial Strip Mall" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Primary School
+        <img src="PNNL Commercial Primary School.png" alt="PNNL Commercial Primary School" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Secondary School
+        <img src="PNNL Commercial Secondary School.png" alt="PNNL Commercial Secondary School" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Outpatient Healthcare
+        <img src="PNNL Commercial Outpatient Healthcare.png" alt="PNNL Commercial Outpatient Healthcare" class="pnnl_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="pnnl_td">
+        Commercial<br>Hospital
+        <img src="PNNL Commercial Hospital.png" alt="PNNL Commercial Hospital" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Small Hotel
+        <img src="PNNL Commercial Small Hotel.png" alt="PNNL Commercial Small Hotel" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Large Hotel
+        <img src="PNNL Commercial Large Hotel.png" alt="PNNL Commercial Large Hotel" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Warehouse (non-refrigerated)
+        <img src="PNNL Commercial Warehouse (non-refrigerated).png" alt="PNNL Commercial Warehouse (non-refrigerated)" class="pnnl_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="pnnl_td">
+        Commercial<br>Quick Service Restaurant
+        <img src="PNNL Commercial Quick Service Restaurant.png" alt="PNNL Commercial Quick Service Restaurant" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Full Service Restaurant
+        <img src="PNNL Commercial Full Service Restaurant.png" alt="PNNL Commercial Full Service Restaurant" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>Mid-rise Apartment
+        <img src="PNNL Commercial Mid-rise Apartment.png" alt="PNNL Commercial Mid-rise Apartment" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Commercial<br>High-rise Apartment
+        <img src="PNNL Commercial High-rise Apartment.png" alt="PNNL Commercial High-rise Apartment" class="pnnl_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="pnnl_td">
+        Single-family detached house with slab
+        <img src="PNNL Single-family detached house with slab.png" alt="PNNL Single-family detached house with slab" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Single-family detached house with crawlspace
+        <img src="PNNL Single-family detached house with crawlspace.png" alt="PNNL Single-family detached house with crawlspace" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Single-family detached house with basement
+        <img src="PNNL Single-family detached house with basement.png" alt="PNNL Single-family detached house with basement" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Manufactured Housing<br>Single-section
+        <img src="PNNL Manufactured Housing Single-section.png" alt="PNNL Manufactured Housing Single-section" class="pnnl_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="pnnl_td">
+        Multi-family low-rise apartment building with slab
+        <img src="PNNL Multi-family low-rise apartment building with slab.png" alt="PNNL Multi-family low-rise apartment building with slab" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Multi-family low-rise apartment building with crawlspace
+        <img src="PNNL Multi-family low-rise apartment building with crawlspace.png" alt="PNNL Multi-family low-rise apartment building with crawlspace" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Multi-family low-rise apartment building with basement
+        <img src="PNNL Multi-family low-rise apartment building with basement.png" alt="PNNL Multi-family low-rise apartment building with basement" class="pnnl_img">
+      </td>
+      <td class="pnnl_td">
+        Manufactured Housing<br>Multi-section
+        <img src="PNNL Manufactured Housing Multi-section.png" alt="PNNL Manufactured Housing Multi-section" class="pnnl_img">
+      </td>
+    </tr>
+  </table>
+
   <br>
   <br>
   
