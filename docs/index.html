@@ -902,9 +902,11 @@ window.onload = function() {
   <br>
   
   <span class="text_font">
-    The "ExampleFiles" directory contains IDFs that showcase how to use particular objects in an EnergyPlus model. This gives a working example that you can then migrate to your own IDF file.<!-- mention ExampleFiles.html and ExampleFiles-ObjectsLink.html, add in link to giant CSV for grid of IDF names and object type with the number of the object type, blank for zero--><br>
+    The "ExampleFiles" directory contains about 750 IDF files that showcase how to use particular objects in an EnergyPlus model. The intent is for each example IDF to provide a working example that you can then migrate to your own IDF file. Unfortunately, finding the IDF file you want can be difficult. The name of the IDF file is useful, as well as the ExampleFiles.html and ExampleFiles-ObjectsLink.html files, but they are not exhaustive in their summaries. Also, some object types do not have an example file, such as the GroundHeatTransfer:Basement:XFACE object type.<br>
     <br>
-    The "Documentation" directory has files like EngineeringReference.pdf, GettingStarted.pdf, InputOutputReference.pdf, and others. The most useful file overall is probably the InputOutputReference.pdf, but it's more of a reference. Some of the other files are more helpful when first starting to use EnergyPlus.
+    To make finding an example IDF file with particular object(s) easier, I made a CSV that has the number of each EnergyPlus object type in each example IDF file. You can download the <a href="ExampleFiles_object_counts.csv" target="_blank" class="text_anchors">ExampleFiles_object_counts.csv</a> and open with Microsoft Excel, or any other CSV viewer, to find the example IDF files with the objects you want to use in your own model. Each row of the CSV is the name of an IDF example file, and each column is an object type name. The number that appears in a row and column is the number of the column's object type in the row's IDF file. A cell is empty, rather than "0" for the cell contents, if the column's object type does not exist in the row's IDF file. <i>Note: Only object types that exist in at least one example IDF file are in the top row. An object type that does not appear in any example IDF file, such as the GroundHeatTransfer:Basement:XFACE object type, will not appear in the top row.</i><br>
+    <br>
+    Last, but not least, the "Documentation" directory has files like EngineeringReference.pdf, GettingStarted.pdf, InputOutputReference.pdf, and others. The most useful file overall is probably the InputOutputReference.pdf, but it's more of a reference. Some of the other resources are more helpful when first starting to use EnergyPlus.
   </span>
   
   <br>
