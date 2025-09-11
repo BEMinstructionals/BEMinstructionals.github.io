@@ -24,11 +24,11 @@ EnergyPlus is completely separate from the BEM File Editor. If you think you've 
 
 ## Licenses
 
-The BEM File Editor main.py code is licensed under a BSD-3-Clause license. See the [LICENSE](https://github.com/BEMinstructionals/BEMinstructionals.github.io/blob/master/LICENSE.md) file for details.
+The BEM File Editor code is dual licensed under a BSD-3-Clause license and the GNU GPLv3. See the [LICENSE](https://github.com/BEMinstructionals/BEMinstructionals.github.io/blob/master/LICENSE.md) file for details.
 
 The BEM Instructionals logo is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
-PySide6 is licensed under the [GNU Lesser General Public License version 3](https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text).
+PySide6 is licensed under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text).
 
 ## Acknowledgments
 

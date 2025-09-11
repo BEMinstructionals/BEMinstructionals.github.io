@@ -2,8 +2,8 @@ import sys
 from datetime import date
 
 if len(sys.argv) == 3:
-    new_version = sys.argv[1]
-    old_version = sys.argv[2]
+    old_version_string = sys.argv[1]
+    new_version_string = sys.argv[2]
     
     filepaths = [
     "version.txt",
@@ -18,7 +18,7 @@ if len(sys.argv) == 3:
     for filepath in filepaths:
         with open(filepath, "r", encoding="utf-8") as file:
             file_contents = file.read()
-        updated_contents = file_contents.replace(old_string, new_string)
+        updated_contents = file_contents.replace(old_version_string, new_version_string)
         with open(filepath, "w", encoding="utf-8") as file:
             file.write(updated_contents)
     
@@ -31,4 +31,4 @@ if len(sys.argv) == 3:
         file.writelines(lines)
 
 else:
-    print("You must provide exactly two command line arguments for the new_version and old_version in that order.")
+    print("You must provide exactly two command line arguments for the old_version_string and new_version_string in that order.")
