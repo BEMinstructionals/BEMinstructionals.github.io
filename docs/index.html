@@ -220,7 +220,7 @@ hr {
   margin-top: 0px;
 }
 
-.pnnl_table {
+.prototypes_table {
   margin-left: auto;
   margin-right: auto;
   
@@ -228,12 +228,12 @@ hr {
   table-layout: fixed;
 }
 
-.pnnl_td {
+.prototypes_td {
   padding: 0.5em;
   vertical-align: bottom;
 }
 
-.pnnl_img {
+.prototypes_img {
   max-width: 90%;
   height: auto;
 }
@@ -309,7 +309,7 @@ hr {
     display: none;
   }
   
-  .pnnl_table {
+  .prototypes_table {
     display: none;
   }
   
@@ -370,7 +370,7 @@ hr {
     display: none;
   }
   
-  .pnnl_table {
+  .prototypes_table {
     display: none;
   }
   
@@ -928,7 +928,138 @@ window.onload = function() {
   <br>
   <br>
   
-  <span class="subtitle_font">
+  <!--<span class="subtitle_font">
+    Modified Prototype Models
+  </span>
+  
+  <br>
+  <br>
+  
+  <span class="text_font">
+    The <a href="https://www.energy.gov/eere/buildings/commercial-reference-buildings" target="_blank" class="text_anchors">DOE Commercial Reference Buildings</a> and subsequent <a href="https://www.energycodes.gov/prototype-building-models" target="_blank" class="text_anchors">PNNL Prototype Building Models</a> are representative building models that were updated periodically, with the latest PNNL prototypes still being updated, to estimate energy savings associated with changes in energy codes and standards. (More information in the <a href="#id_Prototype_Models_Created_by_the_Government" class="text_anchors">Prototype Models Created by the Government</a> section below.) One drawback of the sequences of models is the newer models do not take advantage of some newer EnergyPlus features. This is intentional so that changes in model outputs compared across versions will be due to the intentional changes in energy codes and standards without noise being introduced by the use of different modeling features. One example of this is the newer ground heat transfer methods available in EnergyPlus, which are far easier to specify and simulate. (See <a href="https://bigladdersoftware.com/projects/kiva/" target="_blank" class="text_anchors">https://bigladdersoftware.com/projects/kiva/</a> for an example.)<br>
+    <br>
+    Below are some changes I've made to PNNL Prototype Building Models with IDF file download links. (A description of all the changes can be found in a comment at the top of the IDF file viewed with a text editor.) These models are better suited for simulating hypothetical future buildings. Different combinations of energy efficiency technologies can be simulated to estimate savings against the overall monetary costs. For example, the benefit of indirect evaporative cooling on outdoor air intake during heat waves.
+  </span>
+    
+  <br>
+  <br>
+    
+  <table class="prototypes_table text_font">
+    <tr>
+      <td class="prototypes_td">
+        Commercial<br>Small Office
+        <img src="Modified PNNL Commercial Small Office.png" alt="Modified PNNL Commercial Small Office" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Medium Office
+        <img src="Modified PNNL Commercial Medium Office.png" alt="Modified PNNL Commercial Medium Office" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Large Office
+        <img src="Modified PNNL Commercial Large Office.png" alt="Modified PNNL Commercial Large Office" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Stand-alone Retail
+        <img src="Modified PNNL Commercial Stand-alone Retail.png" alt="Modified PNNL Commercial Stand-alone Retail" class="prototypes_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="prototypes_td">
+        Commercial<br>Strip Mall
+        <img src="Modified PNNL Commercial Strip Mall.png" alt="Modified PNNL Commercial Strip Mall" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Primary School
+        <img src="Modified PNNL Commercial Primary School.png" alt="Modified PNNL Commercial Primary School" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Secondary School
+        <img src="Modified PNNL Commercial Secondary School.png" alt="Modified PNNL Commercial Secondary School" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Outpatient Healthcare
+        <img src="Modified PNNL Commercial Outpatient Healthcare.png" alt="Modified PNNL Commercial Outpatient Healthcare" class="prototypes_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="prototypes_td">
+        Commercial<br>Hospital
+        <img src="Modified PNNL Commercial Hospital.png" alt="Modified PNNL Commercial Hospital" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Small Hotel
+        <img src="Modified PNNL Commercial Small Hotel.png" alt="Modified PNNL Commercial Small Hotel" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Large Hotel
+        <img src="Modified PNNL Commercial Large Hotel.png" alt="Modified PNNL Commercial Large Hotel" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Warehouse (non-refrigerated)
+        <img src="Modified PNNL Commercial Warehouse (non-refrigerated).png" alt="Modified PNNL Commercial Warehouse (non-refrigerated)" class="prototypes_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="prototypes_td">
+        Commercial<br>Quick Service Restaurant
+        <img src="Modified PNNL Commercial Quick Service Restaurant.png" alt="Modified PNNL Commercial Quick Service Restaurant" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Full Service Restaurant
+        <img src="Modified PNNL Commercial Full Service Restaurant.png" alt="Modified PNNL Commercial Full Service Restaurant" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>Mid-rise Apartment
+        <img src="Modified PNNL Commercial Mid-rise Apartment.png" alt="Modified PNNL Commercial Mid-rise Apartment" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Commercial<br>High-rise Apartment
+        <img src="Modified PNNL Commercial High-rise Apartment.png" alt="Modified PNNL Commercial High-rise Apartment" class="prototypes_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="prototypes_td">
+        Single-family detached house with slab
+        <img src="Modified PNNL Single-family detached house with slab.png" alt="Modified PNNL Single-family detached house with slab" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Single-family detached house with crawlspace
+        <img src="Modified PNNL Single-family detached house with crawlspace.png" alt="Modified PNNL Single-family detached house with crawlspace" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Single-family detached house with basement
+        <img src="Modified PNNL Single-family detached house with basement.png" alt="Modified PNNL Single-family detached house with basement" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Manufactured Housing<br>Single-section
+        <img src="Modified PNNL Manufactured Housing Single-section.png" alt="Modified PNNL Manufactured Housing Single-section" class="prototypes_img">
+      </td>
+    </tr>
+    <tr>
+      <td class="prototypes_td">
+        Multi-family low-rise apartment building with slab
+        <img src="Modified PNNL Multi-family low-rise apartment building with slab.png" alt="Modified PNNL Multi-family low-rise apartment building with slab" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Multi-family low-rise apartment building with crawlspace
+        <img src="Modified PNNL Multi-family low-rise apartment building with crawlspace.png" alt="Modified PNNL Multi-family low-rise apartment building with crawlspace" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Multi-family low-rise apartment building with basement
+        <img src="Modified PNNL Multi-family low-rise apartment building with basement.png" alt="Modified PNNL Multi-family low-rise apartment building with basement" class="prototypes_img">
+      </td>
+      <td class="prototypes_td">
+        Manufactured Housing<br>Multi-section
+        <img src="Modified PNNL Manufactured Housing Multi-section.png" alt="Modified PNNL Manufactured Housing Multi-section" class="prototypes_img">
+      </td>
+    </tr>
+  </table>
+  
+  <br>
+  <br>
+  <br>-->
+  
+  <span class="subtitle_font" id="id_Prototype_Models_Created_by_the_Government">
     Prototype Models Created by the Government
   </span>
   
@@ -958,113 +1089,113 @@ window.onload = function() {
   <br>
   <br>
     
-  <table class="pnnl_table text_font">
+  <table class="prototypes_table text_font">
     <tr>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Small Office
-        <img src="PNNL Commercial Small Office.png" alt="PNNL Commercial Small Office" class="pnnl_img">
+        <img src="PNNL Commercial Small Office.png" alt="PNNL Commercial Small Office" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Medium Office
-        <img src="PNNL Commercial Medium Office.png" alt="PNNL Commercial Medium Office" class="pnnl_img">
+        <img src="PNNL Commercial Medium Office.png" alt="PNNL Commercial Medium Office" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Large Office
-        <img src="PNNL Commercial Large Office.png" alt="PNNL Commercial Large Office" class="pnnl_img">
+        <img src="PNNL Commercial Large Office.png" alt="PNNL Commercial Large Office" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Stand-alone Retail
-        <img src="PNNL Commercial Stand-alone Retail.png" alt="PNNL Commercial Stand-alone Retail" class="pnnl_img">
+        <img src="PNNL Commercial Stand-alone Retail.png" alt="PNNL Commercial Stand-alone Retail" class="prototypes_img">
       </td>
     </tr>
     <tr>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Strip Mall
-        <img src="PNNL Commercial Strip Mall.png" alt="PNNL Commercial Strip Mall" class="pnnl_img">
+        <img src="PNNL Commercial Strip Mall.png" alt="PNNL Commercial Strip Mall" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Primary School
-        <img src="PNNL Commercial Primary School.png" alt="PNNL Commercial Primary School" class="pnnl_img">
+        <img src="PNNL Commercial Primary School.png" alt="PNNL Commercial Primary School" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Secondary School
-        <img src="PNNL Commercial Secondary School.png" alt="PNNL Commercial Secondary School" class="pnnl_img">
+        <img src="PNNL Commercial Secondary School.png" alt="PNNL Commercial Secondary School" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Outpatient Healthcare
-        <img src="PNNL Commercial Outpatient Healthcare.png" alt="PNNL Commercial Outpatient Healthcare" class="pnnl_img">
+        <img src="PNNL Commercial Outpatient Healthcare.png" alt="PNNL Commercial Outpatient Healthcare" class="prototypes_img">
       </td>
     </tr>
     <tr>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Hospital
-        <img src="PNNL Commercial Hospital.png" alt="PNNL Commercial Hospital" class="pnnl_img">
+        <img src="PNNL Commercial Hospital.png" alt="PNNL Commercial Hospital" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Small Hotel
-        <img src="PNNL Commercial Small Hotel.png" alt="PNNL Commercial Small Hotel" class="pnnl_img">
+        <img src="PNNL Commercial Small Hotel.png" alt="PNNL Commercial Small Hotel" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Large Hotel
-        <img src="PNNL Commercial Large Hotel.png" alt="PNNL Commercial Large Hotel" class="pnnl_img">
+        <img src="PNNL Commercial Large Hotel.png" alt="PNNL Commercial Large Hotel" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Warehouse (non-refrigerated)
-        <img src="PNNL Commercial Warehouse (non-refrigerated).png" alt="PNNL Commercial Warehouse (non-refrigerated)" class="pnnl_img">
+        <img src="PNNL Commercial Warehouse (non-refrigerated).png" alt="PNNL Commercial Warehouse (non-refrigerated)" class="prototypes_img">
       </td>
     </tr>
     <tr>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Quick Service Restaurant
-        <img src="PNNL Commercial Quick Service Restaurant.png" alt="PNNL Commercial Quick Service Restaurant" class="pnnl_img">
+        <img src="PNNL Commercial Quick Service Restaurant.png" alt="PNNL Commercial Quick Service Restaurant" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Full Service Restaurant
-        <img src="PNNL Commercial Full Service Restaurant.png" alt="PNNL Commercial Full Service Restaurant" class="pnnl_img">
+        <img src="PNNL Commercial Full Service Restaurant.png" alt="PNNL Commercial Full Service Restaurant" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>Mid-rise Apartment
-        <img src="PNNL Commercial Mid-rise Apartment.png" alt="PNNL Commercial Mid-rise Apartment" class="pnnl_img">
+        <img src="PNNL Commercial Mid-rise Apartment.png" alt="PNNL Commercial Mid-rise Apartment" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Commercial<br>High-rise Apartment
-        <img src="PNNL Commercial High-rise Apartment.png" alt="PNNL Commercial High-rise Apartment" class="pnnl_img">
+        <img src="PNNL Commercial High-rise Apartment.png" alt="PNNL Commercial High-rise Apartment" class="prototypes_img">
       </td>
     </tr>
     <tr>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Single-family detached house with slab
-        <img src="PNNL Single-family detached house with slab.png" alt="PNNL Single-family detached house with slab" class="pnnl_img">
+        <img src="PNNL Single-family detached house with slab.png" alt="PNNL Single-family detached house with slab" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Single-family detached house with crawlspace
-        <img src="PNNL Single-family detached house with crawlspace.png" alt="PNNL Single-family detached house with crawlspace" class="pnnl_img">
+        <img src="PNNL Single-family detached house with crawlspace.png" alt="PNNL Single-family detached house with crawlspace" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Single-family detached house with basement
-        <img src="PNNL Single-family detached house with basement.png" alt="PNNL Single-family detached house with basement" class="pnnl_img">
+        <img src="PNNL Single-family detached house with basement.png" alt="PNNL Single-family detached house with basement" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Manufactured Housing<br>Single-section
-        <img src="PNNL Manufactured Housing Single-section.png" alt="PNNL Manufactured Housing Single-section" class="pnnl_img">
+        <img src="PNNL Manufactured Housing Single-section.png" alt="PNNL Manufactured Housing Single-section" class="prototypes_img">
       </td>
     </tr>
     <tr>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Multi-family low-rise apartment building with slab
-        <img src="PNNL Multi-family low-rise apartment building with slab.png" alt="PNNL Multi-family low-rise apartment building with slab" class="pnnl_img">
+        <img src="PNNL Multi-family low-rise apartment building with slab.png" alt="PNNL Multi-family low-rise apartment building with slab" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Multi-family low-rise apartment building with crawlspace
-        <img src="PNNL Multi-family low-rise apartment building with crawlspace.png" alt="PNNL Multi-family low-rise apartment building with crawlspace" class="pnnl_img">
+        <img src="PNNL Multi-family low-rise apartment building with crawlspace.png" alt="PNNL Multi-family low-rise apartment building with crawlspace" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Multi-family low-rise apartment building with basement
-        <img src="PNNL Multi-family low-rise apartment building with basement.png" alt="PNNL Multi-family low-rise apartment building with basement" class="pnnl_img">
+        <img src="PNNL Multi-family low-rise apartment building with basement.png" alt="PNNL Multi-family low-rise apartment building with basement" class="prototypes_img">
       </td>
-      <td class="pnnl_td">
+      <td class="prototypes_td">
         Manufactured Housing<br>Multi-section
-        <img src="PNNL Manufactured Housing Multi-section.png" alt="PNNL Manufactured Housing Multi-section" class="pnnl_img">
+        <img src="PNNL Manufactured Housing Multi-section.png" alt="PNNL Manufactured Housing Multi-section" class="prototypes_img">
       </td>
     </tr>
   </table>
