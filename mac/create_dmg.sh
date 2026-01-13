@@ -8,6 +8,8 @@ rm "BEM-File-Editor.dmg"
 cp ../LICENSE.md LICENSE.md
 cp ../PySide6_license.txt PySide6_license.txt
 cp ../version.txt version.txt
+cp ../_internal/three_geometry.html three_geometry.html
+cp -r ../_internal/three.js three.js
 python3 -m venv env
 env/bin/pip3 install pyside6 pyinstaller
 env/bin/pyinstaller mac.spec
@@ -22,3 +24,4 @@ rm -r env
 rm LICENSE.md
 rm PySide6_license.txt
 rm version.txt
+rm -r three.js

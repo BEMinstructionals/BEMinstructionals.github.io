@@ -30,6 +30,8 @@ The BEM Instructionals logo is licensed under a [Creative Commons Attribution-Sh
 
 PySide6 is licensed under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text).
 
+Three.js is made available under the [MIT License](https://github.com/mrdoob/three.js/blob/dev/LICENSE).
+
 ## Acknowledgments
 
 The BEM File Editor was inspired by the [IDF+ Editor](https://github.com/mattdoiron/idfplus) created by Matt Doiron.

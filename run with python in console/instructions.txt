@@ -2,7 +2,7 @@ Instructions to run the BEM File Editor using python in a console
 
 useful for when your employer limits what you can install on your computer
 
-strongly recommend using Python 3.13 for compatibility
+strongly recommend using Python 3.14 for compatibility
 install PySide6 with "pip install pyside6"
 note that this will run a little slower than the installers because the installers have been optimized
 

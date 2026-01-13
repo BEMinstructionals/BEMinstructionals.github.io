@@ -5,7 +5,7 @@ a = Analysis(
     ['../main.py'],
     pathex=[],
     binaries=[],
-    datas=[('version.txt', '.'), ('LICENSE.md', '.'), ('PySide6_license.txt', '.')],
+    datas=[('version.txt', '.'), ('LICENSE.md', '.'), ('PySide6_license.txt', '.'), ('three.js', 'three.js'), ('three_geometry.html', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

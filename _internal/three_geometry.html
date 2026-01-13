@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>body{margin:0;}</style>
+<!-- includes the Three.js JavaScript 3D Library in the BEM File Editor installation files -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "./three.js/build/three.module.min.js",
+    "three/addons/": "./three.js/examples/jsm/"
+  }
+}
+</script>
+
+<!-- These are global variables and functions so that the PySide6 QWebEngineView can access them. -->
+
+<!-- The PySide6 QWebEngineView does not have direct access to these variables and functions since this script is a module.
+Instead, some of the functions are shared in a global scope. -->
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { Line2 } from 'three/addons/lines/Line2.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
+import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
+
+//sizing constants
+const axes_length = 100;
+const axes_line_width = 2;
+const wireframe_radius = 0.1;
+const daylighting_reference_point_radius = 0.5;
+
+//used for rotations
+const x_axis_unit_vector = new THREE.Vector3(1,0,0);
+const y_axis_unit_vector = new THREE.Vector3(0,1,0);
+const z_axis_unit_vector = new THREE.Vector3(0,0,1);
+
+//opacity of glass
+const glass_opacity = 0.6; //opaque = 1.0
+
+//all available colors
+const background_color_hex = 0xFFFFFF;
+const north_axis_color_hex = 0xFFCC00; //orange
+
+//initializes with anticlockwise as front
+const materials_dict = {
+  "Daylighting:ReferencePoint": new THREE.MeshBasicMaterial({color:0xFF0000}),
+  "Wireframe": new THREE.MeshBasicMaterial({color:0x000000}),
+  "BuildingSurface:Detailed Wall exterior": new THREE.MeshBasicMaterial({color:0xFFFF88}),
+  "BuildingSurface:Detailed Wall interior": new THREE.MeshBasicMaterial({color:0xFFFFCC,side:THREE.BackSide}),
+  "BuildingSurface:Detailed Floor exterior": new THREE.MeshBasicMaterial({color:0xAAAAAA}),
+  "BuildingSurface:Detailed Floor interior": new THREE.MeshBasicMaterial({color:0xE0E0E0,side:THREE.BackSide}),
+  "BuildingSurface:Detailed Ceiling exterior": new THREE.MeshBasicMaterial({color:0xFFAA00}),
+  "BuildingSurface:Detailed Ceiling interior": new THREE.MeshBasicMaterial({color:0xFFCC88,side:THREE.BackSide}),
+  "BuildingSurface:Detailed Roof exterior": new THREE.MeshBasicMaterial({color:0xEE6666}),
+  "BuildingSurface:Detailed Roof interior": new THREE.MeshBasicMaterial({color:0xFFCCCC,side:THREE.BackSide}),
+  "Shading:Building:Detailed exterior": new THREE.MeshBasicMaterial({color:0xAA66EE}),
+  "Shading:Building:Detailed interior": new THREE.MeshBasicMaterial({color:0xEECCFF,side:THREE.BackSide}),
+  "FenestrationSurface:Detailed Opaque exterior": new THREE.MeshBasicMaterial({color:0xAA8822}),
+  "FenestrationSurface:Detailed Opaque interior": new THREE.MeshBasicMaterial({color:0xEECC66,side:THREE.BackSide}),
+  //windows are little different since they will have an opacity
+  "FenestrationSurface:Detailed Glass exterior": new THREE.MeshBasicMaterial({color:0x88EEFF,transparent:true,opacity:glass_opacity}),
+  "FenestrationSurface:Detailed Glass interior": new THREE.MeshBasicMaterial({color:0xCCFFFF,side:THREE.BackSide,transparent:true,opacity:glass_opacity}),
+  "Highlighted exterior": new THREE.MeshBasicMaterial({color:0x88FF88}),
+  "Highlighted interior": new THREE.MeshBasicMaterial({color:0xCCFFCC,side:THREE.BackSide})
+};
+
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+document.body.appendChild(renderer.domElement);
+
+//there is no Light in the scene because a light source will create shadows and shade surfaces, but I want solid color surfaces
+
+const camera = new THREE.PerspectiveCamera();
+camera.up = z_axis_unit_vector; //z-axis now points up
+camera.position.set(2.0*axes_length,0.5*axes_length,1.0*axes_length); //initial (x,y,z) position of camera
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(background_color_hex);
+
+function animate() {
+  controls.update();
+  renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(animate);
+
+
+const x_axis_line2 = new Line2(new LineGeometry().setPositions([0,0,0,axes_length,0,0]),new LineMaterial({color:0xFF0000,linewidth:axes_line_width,alphaToCoverage:false}));
+const y_axis_line2 = new Line2(new LineGeometry().setPositions([0,0,0,0,axes_length,0]),new LineMaterial({color:0x00FF00,linewidth:axes_line_width,alphaToCoverage:false}));
+const z_axis_line2 = new Line2(new LineGeometry().setPositions([0,0,0,0,0,axes_length]),new LineMaterial({color:0x0000FF,linewidth:axes_line_width,alphaToCoverage:false}));
+scene.add(x_axis_line2,y_axis_line2,z_axis_line2);
+
+let north_axis_angle = 0.0;
+const north_axis_initial_points = [0,0,0,axes_length,0,0];
+const north_axis_line2 = new Line2(new LineGeometry().setPositions(north_axis_initial_points),new LineMaterial({color:north_axis_color_hex,linewidth:axes_line_width,alphaToCoverage:false}));
+north_axis_line2.visible = false; //initially hidden with no IDF loaded
+scene.add(north_axis_line2);
+
+function update_container_dimensions(width, height) {
+  renderer.setSize(width, height);
+  
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+}
+globalThis.update_container_dimensions = update_container_dimensions;
+
+let geometry_dict; //contains almost all information for the geometry objects
+
+function update_JavaScript_data(axes_visible_parameter, north_axis_conventional_maths_angle_parameter, geometry_dict_parameter, vertex_entry_direction_parameter, wireframe_visible_parameter, highlighted_name_parameter) {
+  //change the North axis angle
+  north_axis_angle = north_axis_conventional_maths_angle_parameter;
+  north_axis_line2.geometry.setPositions(north_axis_initial_points); //reset line to be on the x-axis
+  north_axis_line2.geometry.rotateZ(north_axis_angle * Math.PI/180.0); //rotate conventional maths direction in the xy-plane
+  
+  //change visibility of axes
+  //must be done after changing the North axis angle which influences the visibility of the North axis
+  update_axes_visibility(axes_visible_parameter);
+  
+  //since changing the geometry is so fast, it's easier and fast enough to recreate the geometry each time
+  //only geometry objects not removed from the scene are the xyz axes and north axis
+  for(const category in geometry_dict) {
+    for(const object_name in geometry_dict[category]) {
+      if(geometry_dict[category][object_name]["scene_children"] !== undefined) {
+        for(const child_name in geometry_dict[category][object_name]["scene_children"]) {
+          if(geometry_dict[category][object_name]["scene_children"][child_name] !== null) {
+            scene.remove(geometry_dict[category][object_name]["scene_children"][child_name]);
+          }
+        }
+      }
+    }
+  }
+  //replace with new geometry_dict_parameter now that all the existing geometry objects have been deleted
+  geometry_dict = geometry_dict_parameter;
+  
+  //determines what the exterior and interior side of a surface are based on the ordering of the vertices
+  const vertex_entry_direction = vertex_entry_direction_parameter;
+  for(const [material_name, mesh_basic_material] of Object.entries(materials_dict)) {
+    if(vertex_entry_direction == "Counterclockwise") {
+      if(material_name.includes("exterior")) {
+        mesh_basic_material.side = THREE.FrontSide;
+      }
+      else if(material_name.includes("interior")) {
+        mesh_basic_material.side = THREE.BackSide;
+      }
+    } else { //Clockwise
+      if(material_name.includes("exterior")) {
+        mesh_basic_material.side = THREE.BackSide;
+      }
+      else if(material_name.includes("interior")) {
+        mesh_basic_material.side = THREE.FrontSide;
+      }
+    }
+  }
+  
+  //recreate the geometry
+  for(const category of ["BuildingSurface:Detailed","FenestrationSurface:Detailed","Shading:Building:Detailed"]) { //Daylighting:ReferencePoint is done separately
+    for(const [object_name, properties_dict] of Object.entries(geometry_dict[category])) {
+      //add other keys
+      properties_dict["scene_children"] = {};
+      properties_dict["scene_children"]["exterior_mesh"] = null;
+      properties_dict["scene_children"]["interior_mesh"] = null;
+      properties_dict["scene_children"]["wireframe"] = null;
+      
+      //translate coordinate subarrays to Vector3 objects
+      let vertices_3 = [];
+      for(const subarray of properties_dict["vertices"]) {
+        vertices_3.push(new THREE.Vector3(subarray[0],subarray[1],subarray[2]));
+      }
+      //do the same for the FenestrationSurface:Detailed holes in BuildingSurface:Detailed objects
+      let holes_vertices_3 = [];
+      if(category == "BuildingSurface:Detailed") {
+        for(const individual_hole of properties_dict["holes"]) {
+          let individual_hole_vertices_3 = [];
+          for(const subarray of individual_hole) {
+            individual_hole_vertices_3.push(new THREE.Vector3(subarray[0],subarray[1],subarray[2]));
+          }
+          holes_vertices_3.push(individual_hole_vertices_3);
+        }
+      }
+      
+      //find the center
+      let center = new THREE.Vector3(0,0,0);
+      for(let vertex_3 of vertices_3) { //sum all vertices
+          center.add(vertex_3);
+      }
+      center.multiplyScalar(1.0/vertices_3.length); //find the center by dividing the current sum of all vertices by the number of vertices
+      //used for shifting the mesh
+      let unit_vector_center = center.clone().normalize();
+      
+      //create surface normal for future rotations
+      let surface_normal = new THREE.Vector3();
+      surface_normal.crossVectors(new THREE.Vector3().subVectors(vertices_3[0],vertices_3[1]),new THREE.Vector3().subVectors(vertices_3[0],vertices_3[2])); //takes into account handedness of vertices
+      surface_normal.normalize(); //must be a unit vector to use as input to other functions
+      
+      let rotation_angle = surface_normal.angleTo(z_axis_unit_vector); //calculate angle between z-axis and surface normal, could be 0 or -pi which causes the rotation vector = (0,0,0)
+      
+      let rotation_vector = new THREE.Vector3();
+      rotation_vector.crossVectors(surface_normal,z_axis_unit_vector); //vector perpendicular to z-axis and surface normal to rotate around
+      rotation_vector.normalize(); //must be a unit vector to use as input to other functions
+      if(rotation_vector.length() == 0) { //for polygons that are parallel to the xy-plane, the surface normal is (0,0,1) or (0,0,-1), which makes the rotation vector = (0,0,0)
+        rotation_vector = x_axis_unit_vector; //need to explicitly specify the rotation vector as a unit vector in the xy-plane, just picked the x-axis in this case
+      }
+      
+      //surfaces must be specified in the xy-plane, then transformed to where they are supposed to be, this ensures the surfaces are planar for Three.js
+      let xy_vertices_2 = []; //will hold vertices after the surface lies in the xy-plane
+      for(let i = 0; i < vertices_3.length; i++) {
+          vertices_3[i].sub(center); //move the center of the surface to the origin
+          vertices_3[i].applyAxisAngle(rotation_vector,rotation_angle); //rotation into xy-plane while keeping vertices handedness consistent
+          xy_vertices_2.push(new THREE.Vector2(vertices_3[i].x,vertices_3[i].y)); //take the x,y coordinates out of the Vector3 vertices, the z components should all be 0 if the surface vertices were coplanar
+      }
+      //apply the same transformations the FenestrationSurface:Detailed holes in BuildingSurface:Detailed objects
+      let holes_vertices_2 = [];
+      if(category == "BuildingSurface:Detailed") {
+        for(const individual_hole_vertices_3 of holes_vertices_3) {
+          let individual_hole_vertices_2 = [];
+          for(let i = 0; i < individual_hole_vertices_3.length; i++) {
+            individual_hole_vertices_3[i].sub(center);
+            individual_hole_vertices_3[i].applyAxisAngle(rotation_vector,rotation_angle);
+            individual_hole_vertices_2.push(new THREE.Vector2(individual_hole_vertices_3[i].x,individual_hole_vertices_3[i].y));
+          }
+          holes_vertices_2.push(individual_hole_vertices_2);
+        }
+      }
+      
+      let mesh_material_key;
+      let reversed_mesh_material_key;
+      if(category == "BuildingSurface:Detailed") {
+        mesh_material_key = category + " " + properties_dict["surface_type"] + " exterior";
+        reversed_mesh_material_key = category + " " + properties_dict["surface_type"] + " interior";
+      } else if(category == "FenestrationSurface:Detailed") {
+        let fenestration_type = "Glass";
+        if(properties_dict["surface_type"] == "Door") {
+          fenestration_type = "Opaque";
+        }
+        mesh_material_key = category + " " + fenestration_type + " exterior";
+        reversed_mesh_material_key = category + " " + fenestration_type + " interior";
+      } else if(category == "Shading:Building:Detailed") {
+        mesh_material_key = category + " exterior";
+        reversed_mesh_material_key = category + " interior";
+      }
+      
+      let shape = new THREE.Shape(xy_vertices_2);
+      //add the FenestrationSurface:Detailed holes to the BuildingSurface:Detailed shape
+      if(category == "BuildingSurface:Detailed") {
+        for(const individual_hole_vertices_2 of holes_vertices_2) {
+          let hole_path = new THREE.Path();
+          hole_path.setFromPoints(individual_hole_vertices_2); //the holes should have an opposite vertices orientation to the shape in order for the triangulation to work, but it seems to work either way
+          shape.holes.push(hole_path);
+        }
+      }
+      
+      let shape_geometry = new THREE.ShapeGeometry(shape);
+      let mesh = new THREE.Mesh(shape_geometry,materials_dict[mesh_material_key]);
+      mesh.translateOnAxis(unit_vector_center,center.length()); //coordinate system moves with surface
+      mesh.rotateOnAxis(rotation_vector,-rotation_angle);
+      
+      //each mesh is opaque from the FrontSide, so an exterior and interior mesh are needed for each surface
+      let reversed_mesh = mesh.clone();
+      reversed_mesh.material = materials_dict[reversed_mesh_material_key];
+      
+      properties_dict["scene_children"]["exterior_mesh"] = mesh;
+      properties_dict["scene_children"]["interior_mesh"] = reversed_mesh;
+      
+      scene.add(mesh);
+      scene.add(reversed_mesh);
+      
+      properties_dict["scene_children"]["wireframe"] = new THREE.Group();
+      for(let i = 0; i < properties_dict["vertices"].length; i++) {
+        //absolute coordinates of polygon edge vertices
+        let edge_start_vertex_3 = new THREE.Vector3(properties_dict["vertices"][i][0],properties_dict["vertices"][i][1],properties_dict["vertices"][i][2]);
+        let end_index = (i+1) % properties_dict["vertices"].length;
+        let edge_end_vertex_3 = new THREE.Vector3(properties_dict["vertices"][end_index][0],properties_dict["vertices"][end_index][1],properties_dict["vertices"][end_index][2]);
+        //unit vector of edge pointing from start vertex to end vertex
+        let unit_vector_edge = edge_start_vertex_3.clone();
+        unit_vector_edge.sub(edge_end_vertex_3).normalize();
+        //center of the edge
+        let center = new THREE.Vector3();
+        center.addVectors(edge_start_vertex_3, edge_end_vertex_3).divideScalar(2);
+        //point from the origin to the center of the edge
+        let unit_vector_to_edge_center = center.clone().normalize();
+        //the cylinder is made along the y-axis with center at the origin
+        let edge_length = edge_start_vertex_3.distanceTo(edge_end_vertex_3);
+        let cylinder_geometry = new THREE.CylinderGeometry(wireframe_radius, wireframe_radius, edge_length, 8, 2, true); //radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded
+        let cylinder_mesh = new THREE.Mesh(cylinder_geometry,materials_dict["Wireframe"]);
+        //the center of the cylinder is moved to the center of the edge
+        cylinder_mesh.translateOnAxis(unit_vector_to_edge_center,center.length()); //coordinate system moves with cylinder
+        //the cylinder must be rotated to coincide with the edge
+        let rotation_angle = y_axis_unit_vector.angleTo(unit_vector_edge); //calculate angle between cylinder and edge
+        //calculate the rotation axis
+        let rotation_vector = new THREE.Vector3();
+        rotation_vector.crossVectors(y_axis_unit_vector,unit_vector_edge);
+        if(rotation_vector.length() != 0) { //for edges that are parallel to the y-axis, the cross product is zero and no rotation is necessary
+          cylinder_mesh.rotateOnAxis(rotation_vector.normalize(),rotation_angle);
+        }
+        properties_dict["scene_children"]["wireframe"].add(cylinder_mesh);
+        
+        let sphere_geometry = new THREE.SphereGeometry(wireframe_radius,8,8); //radius, widthSegments, heightSegments
+        sphere_geometry.translate(properties_dict["vertices"][i][0],properties_dict["vertices"][i][1],properties_dict["vertices"][i][2]);
+        let sphere_mesh = new THREE.Mesh(sphere_geometry,materials_dict["Wireframe"]);
+        properties_dict["scene_children"]["wireframe"].add(sphere_mesh);
+      }
+      scene.add(properties_dict["scene_children"]["wireframe"]);
+    }
+  }
+  
+  //Daylighting:ReferencePoint is not included in the above loop because it's significantly different
+  for(const [object_name, properties_dict] of Object.entries(geometry_dict["Daylighting:ReferencePoint"])) {
+    //add other keys
+    properties_dict["scene_children"] = {};
+    properties_dict["scene_children"]["exterior_mesh"] = null;
+    
+    let sphere_geometry = new THREE.SphereGeometry(daylighting_reference_point_radius,8,8); //radius, widthSegments, heightSegments
+    sphere_geometry.translate(properties_dict["vertex"][0],properties_dict["vertex"][1],properties_dict["vertex"][2]);
+    let mesh = new THREE.Mesh(sphere_geometry,materials_dict["Daylighting:ReferencePoint"]);
+    
+    properties_dict["scene_children"]["exterior_mesh"] = mesh;
+    
+    apply_geometry_object_visibility("Daylighting:ReferencePoint", object_name);
+    
+    scene.add(mesh);
+  }
+  
+  //show(hide) wireframe of shown(hidden) geometry objects
+  //must be run after parsing the geometry_dict so the wireframes exist
+  update_global_wireframe_and_individual_objects_visibility(wireframe_visible_parameter);
+  
+  //highlight the new geometry object and reset the previous geometry object colors
+  //must be run after parsing the geometry_dict so surfaces exist
+  update_highlighted_name(highlighted_name_parameter);
+}
+globalThis.update_JavaScript_data = update_JavaScript_data;
+
+function update_axes_visibility(axes_visible) {
+  x_axis_line2.visible = axes_visible;
+  y_axis_line2.visible = axes_visible;
+  z_axis_line2.visible = axes_visible;
+  north_axis_line2.visible = axes_visible; 
+  
+  //apply the logic for the North axis visibility
+  //will be set to false if the North axis lines up with the x-axis or y-axis
+  const not_x_or_y_axis = Math.abs(north_axis_angle) > 0.0001 && Math.abs(north_axis_angle - 90.0) > 0.0001; //only show if the angle doesn't line up with the x-axis or y-axis +/- tolerance
+  const north_axis_visible = not_x_or_y_axis && axes_visible; //axes must also be visible
+  north_axis_line2.visible = north_axis_visible;
+}
+globalThis.update_axes_visibility = update_axes_visibility;
+
+let wireframe_visible;
+function update_global_wireframe_and_individual_objects_visibility(wireframe_visible_parameter) {
+  wireframe_visible = wireframe_visible_parameter;
+  for(const category of ["BuildingSurface:Detailed","FenestrationSurface:Detailed","Shading:Building:Detailed"]) { //Daylighting:ReferencePoint has no wireframe
+    for(const [object_name, properties_dict] of Object.entries(geometry_dict[category])) {
+      apply_geometry_object_visibility(category, object_name);
+    }
+  }
+}
+globalThis.update_global_wireframe_and_individual_objects_visibility = update_global_wireframe_and_individual_objects_visibility;
+
+let current_highlighted_name = "";
+let current_highlighted_original_exterior_material, current_highlighted_original_interior_material;
+function update_highlighted_name(new_highlighted_name) {
+  if(current_highlighted_name != new_highlighted_name) { //no need to do anything if nothing changed
+    //find the categories of the new and old object_name
+    let current_highlighted_category = "";
+    let new_highlighted_category = "";
+    for(const category of ["BuildingSurface:Detailed","FenestrationSurface:Detailed","Shading:Building:Detailed","Daylighting:ReferencePoint"]) {
+      for(const [object_name, properties_dict] of Object.entries(geometry_dict[category])) {
+        if(current_highlighted_name == object_name) {
+          current_highlighted_category = category;
+        }
+        
+        if(new_highlighted_name == object_name) {
+          new_highlighted_category = category;
+        }
+      }
+    }
+    
+    //restore the materials of the old object name
+    if(current_highlighted_category != "") { //if the object name doesn't exist, then the category remains ""
+      geometry_dict[current_highlighted_category][current_highlighted_name]["scene_children"]["exterior_mesh"].material = current_highlighted_original_exterior_material;
+      if("interior_mesh" in geometry_dict[current_highlighted_category][current_highlighted_name]["scene_children"]) { //needed for Daylighting:ReferencePoint which has no interior mesh
+        geometry_dict[current_highlighted_category][current_highlighted_name]["scene_children"]["interior_mesh"].material = current_highlighted_original_interior_material;
+      }
+    }
+    
+    //backup the materials of the new object name and change to the highlighted materials
+    if(new_highlighted_name != "") { //if the object name doesn't exist, then the category remains ""
+      current_highlighted_original_exterior_material = geometry_dict[new_highlighted_category][new_highlighted_name]["scene_children"]["exterior_mesh"].material;
+      geometry_dict[new_highlighted_category][new_highlighted_name]["scene_children"]["exterior_mesh"].material = materials_dict["Highlighted exterior"];
+      if("interior_mesh" in geometry_dict[new_highlighted_category][new_highlighted_name]["scene_children"]) { //needed for Daylighting:ReferencePoint which has no interior mesh
+        current_highlighted_original_interior_material = geometry_dict[new_highlighted_category][new_highlighted_name]["scene_children"]["interior_mesh"].material;
+        geometry_dict[new_highlighted_category][new_highlighted_name]["scene_children"]["interior_mesh"].material = materials_dict["Highlighted interior"];
+      }
+    }
+    
+    current_highlighted_name = new_highlighted_name;
+  }
+}
+globalThis.update_highlighted_name = update_highlighted_name;
+
+function update_geometry_object_visibility(category, object_name, visible) {
+  geometry_dict[category][object_name]["visible"] = visible;
+  apply_geometry_object_visibility(category, object_name);
+}
+globalThis.update_geometry_object_visibility = update_geometry_object_visibility;
+//split into two functions because rendering the geometry_dict doesn't change the contents of the geometry_dict
+function apply_geometry_object_visibility(category, object_name) {
+  if("wireframe" in geometry_dict[category][object_name]["scene_children"]) {
+    //object wireframe is visible if the wireframe checkbox is true or if the polygon is visible, false otherwise
+    geometry_dict[category][object_name]["scene_children"]["wireframe"].visible = wireframe_visible || geometry_dict[category][object_name]["visible"];
+  }
+  
+  if(category == "BuildingSurface:Detailed") {
+    let paired_object_name = geometry_dict[category][object_name]["paired_surface"];
+    let paired_object_visible = false; //default is there is no paired_surface or equivalently the paired_surface is not visible
+    if(paired_object_name !== null) {
+      paired_object_visible = geometry_dict[category][paired_object_name]["visible"]
+    }
+    
+    //applied in every case
+    geometry_dict[category][object_name]["scene_children"]["exterior_mesh"].visible = geometry_dict[category][object_name]["visible"];
+    //an interior mesh is only visible if the surface is visible and the paired_surface is not visible
+    geometry_dict[category][object_name]["scene_children"]["interior_mesh"].visible = geometry_dict[category][object_name]["visible"] && !paired_object_visible;
+    
+    if(paired_object_name !== null) { //apply changes to the paired_surface if it exists
+      //the visibility of the paired_surface exterior mesh is not affected
+      //the visibility of the paired_surface interior mesh is visible if the surface is not visible and the paired_surface is visible
+      geometry_dict[category][paired_object_name]["scene_children"]["interior_mesh"].visible = !geometry_dict[category][object_name]["visible"] && paired_object_visible;
+    }
+  } else if(category == "FenestrationSurface:Detailed" || category == "Shading:Building:Detailed") {
+    geometry_dict[category][object_name]["scene_children"]["exterior_mesh"].visible = geometry_dict[category][object_name]["visible"];
+    geometry_dict[category][object_name]["scene_children"]["interior_mesh"].visible = geometry_dict[category][object_name]["visible"];
+  } else { //Daylighting:ReferencePoint
+    geometry_dict[category][object_name]["scene_children"]["exterior_mesh"].visible = geometry_dict[category][object_name]["visible"];
+  }
+}
+
+
+
+/*
+let input_dict = {"BuildingSurface:Detailed": {"Inter zone floor 1": {"surface_type": "Floor", "vertices": [[0, 0, 2.60156341463415], [0, 9.09981820971244, 2.60156341463415], [12.1330909462833, 9.09981820971244, 2.60156341463415], [12.1330909462833, 0, 2.60156341463415]], "holes": [], "paired_surface": null, "visible": true}, "ceiling_unit1": {"surface_type": "Ceiling", "vertices": [[0, 0, 5.19302682926829], [12.1330909462833, 0, 5.19302682926829], [12.1330909462833, 9.09981820971244, 5.19302682926829], [0, 9.09981820971244, 5.19302682926829]], "holes": [], "paired_surface": null, "visible": true}, "Roof_front_unit1": {"surface_type": "Roof", "vertices": [[0, 0, 5.19302682926829], [12.1330909462833, 0, 5.19302682926829], [12.1330909462833, 4.54990910485622, 6.6995631975537], [0, 4.54990910485622, 6.6995631975537]], "holes": [], "paired_surface": null, "visible": true}, "Roof_back_unit1": {"surface_type": "Roof", "vertices": [[12.1330909462833, 9.09981820971244, 5.19302682926829], [0, 9.09981820971244, 5.19302682926829], [0, 4.54990910485622, 6.6995631975537], [12.1330909462833, 4.54990910485622, 6.6995631975537]], "holes": [], "paired_surface": null, "visible": true}, "Roof_right_unit1": {"surface_type": "Wall", "vertices": [[12.1330909462833, 0, 5.19302682926829], [12.1330909462833, 9.09981820971244, 5.19302682926829], [12.1330909462833, 4.54990910485622, 6.6995631975537]], "holes": [], "paired_surface": null, "visible": true}, "Roof_left_unit1": {"surface_type": "Wall", "vertices": [[0, 9.09981820971244, 5.19302682926829], [0, 0, 5.19302682926829], [0, 4.54990910485622, 6.6995631975537]], "holes": [], "paired_surface": null, "visible": true}, "Wall_ldf_1.unit1": {"surface_type": "Wall", "vertices": [[0, 0, 0.0101], [6.03709094628325, 0, 0.0101], [6.03709094628325, 0, 2.60156341463415], [0, 0, 2.60156341463415]], "holes": [[[1, 0, 0.92473414634], [3.70719591738945, 0, 0.92473414634], [3.70719591738945, 0, 2.44912439024], [1, 0, 2.44912439024]]], "paired_surface": null, "visible": true}, "Wall_sdr_1.unit1": {"surface_type": "Wall", "vertices": [[12.1330909462833, 0, 0.0101], [12.1330909462833, 9.09981820971244, 0.0101], [12.1330909462833, 9.09981820971244, 2.60156341463415], [12.1330909462833, 0, 2.60156341463415]], "holes": [[[12.1330909462833, 1, 0.92473414634], [12.1330909462833, 3.70719591738945, 0.92473414634], [12.1330909462833, 3.70719591738945, 2.44912439024], [12.1330909462833, 1, 2.44912439024]]], "paired_surface": null, "visible": true}, "Wall_ldb_1.unit1": {"surface_type": "Wall", "vertices": [[12.1330909462833, 9.09981820971244, 0.0101], [0, 9.09981820971244, 0.0101], [0, 9.09981820971244, 2.60156341463415], [12.1330909462833, 9.09981820971244, 2.60156341463415]], "holes": [[[11.6330909463, 9.09981820971244, 0.0101], [9.89118972483, 9.09981820971244, 0.0101], [9.89118972483, 9.09981820971244, 2.14424634146], [11.6330909463, 9.09981820971244, 2.14424634146]], [[9.39118972483, 9.09981820971244, 0.92473414634], [6.68399380744, 9.09981820971244, 0.92473414634], [6.68399380744, 9.09981820971244, 2.44912439024], [9.39118972483, 9.09981820971244, 2.44912439024]]], "paired_surface": null, "visible": true}, "Wall_sdl_1.unit1": {"surface_type": "Wall", "vertices": [[0, 9.09981820971244, 0.0101], [0, 0, 0.0101], [0, 0, 2.60156341463415], [0, 9.09981820971244, 2.60156341463415]], "holes": [[[0, 8.09981820971244, 0.92473414634], [0, 5.39262229232, 0.92473414634], [0, 5.39262229232, 2.44912439024], [0, 8.09981820971244, 2.44912439024]]], "paired_surface": null, "visible": true}, "Wall_ldf_1.garage1": {"surface_type": "Wall", "vertices": [[6.03709094628325, -6.096, 0.0101], [12.13309094628325, -6.096, 0.0101], [12.13309094628325, -6.096, 2.60156341463415], [6.03709094628325, -6.096, 2.60156341463415]], "holes": [[[6.64669094628325, -6.096, 0.0101], [11.52349094628325, -6.096, 0.0101], [11.52349094628325, -6.096, 2.14424634146], [6.64669094628325, -6.096, 2.14424634146]]], "paired_surface": null, "visible": true}, "Wall_sdr_1.garage1": {"surface_type": "Wall", "vertices": [[12.13309094628325, -6.096, 0.0101], [12.13309094628325, 0.0, 0.0101], [12.13309094628325, 0.0, 2.60156341463415], [12.13309094628325, -6.096, 2.60156341463415]], "holes": [], "paired_surface": null, "visible": true}, "House to Garage Wall": {"surface_type": "Wall", "vertices": [[6.03709094628325, 0, 0.0101], [12.1330909462833, 0, 0.0101], [12.1330909462833, 0, 2.60156341463415], [6.03709094628325, 0, 2.60156341463415]], "holes": [[[6.53709094628, 0, 0.0101], [7.45149094628, 0, 0.0101], [7.45149094628, 0, 2.14424634146], [6.53709094628, 0, 2.14424634146]]], "paired_surface": "Garage to House Wall", "visible": true}, "Wall_sdl_1.garage1": {"surface_type": "Wall", "vertices": [[6.03709094628325, 0.0, 0.0101], [6.03709094628325, -6.096, 0.0101], [6.03709094628325, -6.096, 2.60156341463415], [6.03709094628325, 0.0, 2.60156341463415]], "holes": [], "paired_surface": null, "visible": true}, "Roof_front_garage1": {"surface_type": "Roof", "vertices": [[6.03709094628325, -6.096, 2.60156341463415], [12.13309094628325, -6.096, 2.60156341463415], [12.13309094628325, -3.048, 3.60746341463415], [6.03709094628325, -3.048, 3.60746341463415]], "holes": [], "paired_surface": null, "visible": true}, "Roof_back_garage1": {"surface_type": "Roof", "vertices": [[12.13309094628325, 0.0, 2.60156341463415], [6.03709094628325, 0.0, 2.60156341463415], [6.03709094628325, -3.048, 3.60746341463415], [12.13309094628325, -3.048, 3.60746341463415]], "holes": [], "paired_surface": null, "visible": true}, "Roof_right_garage1": {"surface_type": "Wall", "vertices": [[12.13309094628325, -6.096, 2.60156341463415], [12.13309094628325, 0.0, 2.60156341463415], [12.13309094628325, -3.048, 3.60746341463415]], "holes": [], "paired_surface": null, "visible": true}, "Roof_left_garage1": {"surface_type": "Wall", "vertices": [[6.03709094628325, 0.0, 2.60156341463415], [6.03709094628325, -6.096, 2.60156341463415], [6.03709094628325, -3.048, 3.60746341463415]], "holes": [], "paired_surface": null, "visible": true}, "Wall_ldf_2.unit1": {"surface_type": "Wall", "vertices": [[0, 0, 2.60156341463415], [12.1330909462833, 0, 2.60156341463415], [12.1330909462833, 0, 5.19302682926829], [0, 0, 5.19302682926829]], "holes": [[[1, 0, 3.52629756097], [3.70719591738945, 0, 3.52629756097], [3.70719591738945, 0, 5.05068780487], [1, 0, 5.05068780487]]], "paired_surface": null, "visible": true}, "Wall_sdr_2.unit1": {"surface_type": "Wall", "vertices": [[12.1330909462833, 0, 2.60156341463415], [12.1330909462833, 9.09981820971244, 2.60156341463415], [12.1330909462833, 9.09981820971244, 5.19302682926829], [12.1330909462833, 0, 5.19302682926829]], "holes": [[[12.1330909462833, 1, 3.52629756097], [12.1330909462833, 3.70719591738945, 3.52629756097], [12.1330909462833, 3.70719591738945, 5.05068780487], [12.1330909462833, 1, 5.05068780487]]], "paired_surface": null, "visible": true}, "Wall_ldb_2.unit1": {"surface_type": "Wall", "vertices": [[12.1330909462833, 9.09981820971244, 2.60156341463415], [0, 9.09981820971244, 2.60156341463415], [0, 9.09981820971244, 5.19302682926829], [12.1330909462833, 9.09981820971244, 5.19302682926829]], "holes": [[[9.39118972483, 9.09981820971244, 3.52629756097], [6.68399380744, 9.09981820971244, 3.52629756097], [6.68399380744, 9.09981820971244, 5.05068780487], [9.39118972483, 9.09981820971244, 5.05068780487]]], "paired_surface": null, "visible": true}, "Wall_sdl_2.unit1": {"surface_type": "Wall", "vertices": [[0, 9.09981820971244, 2.60156341463415], [0, 0, 2.60156341463415], [0, 0, 5.19302682926829], [0, 9.09981820971244, 5.19302682926829]], "holes": [[[0, 8.09981820971244, 3.52629756097], [0, 5.39262229232, 3.52629756097], [0, 5.39262229232, 5.05068780487], [0, 8.09981820971244, 5.05068780487]]], "paired_surface": null, "visible": true}, "Floor_unit1": {"surface_type": "Floor", "vertices": [[0, 0, 0.0101], [0, 9.09981820971244, 0.0101], [12.1330909462833, 9.09981820971244, 0.0101], [12.1330909462833, 0, 0.0101]], "holes": [], "paired_surface": null, "visible": true}, "Floor_garage1": {"surface_type": "Floor", "vertices": [[6.03709094628325, -6.096, 0.0101], [6.03709094628325, 0.0, 0.0101], [12.13309094628325, 0.0, 0.0101], [12.13309094628325, -6.096, 0.0101]], "holes": [], "paired_surface": null, "visible": true}, "Garage to House Wall": {"surface_type": "Wall", "vertices": [[12.13309094628325, 0.0, 0.0101], [6.03709094628325, 0.0, 0.0101], [6.03709094628325, 0.0, 2.60156341463415], [12.13309094628325, 0.0, 2.60156341463415]], "holes": [[[6.53709094628, 0, 2.14424634146], [7.45149094628, 0, 2.14424634146], [7.45149094628, 0, 0.0101], [6.53709094628, 0, 0.0101]]], "paired_surface": "House to Garage Wall", "visible": true}}, "FenestrationSurface:Detailed": {"door_garage1": {"surface_type": "Door", "vertices": [[6.64669094628325, -6.096, 0.0101], [11.52349094628325, -6.096, 0.0101], [11.52349094628325, -6.096, 2.14424634146], [6.64669094628325, -6.096, 2.14424634146]], "visible": true}, "Door_ldb_unit1": {"surface_type": "Door", "vertices": [[11.6330909463, 9.09981820971244, 0.0101], [9.89118972483, 9.09981820971244, 0.0101], [9.89118972483, 9.09981820971244, 2.14424634146], [11.6330909463, 9.09981820971244, 2.14424634146]], "visible": true}, "Window_ldf_1.unit1": {"surface_type": "Window", "vertices": [[1, 0, 0.92473414634], [3.70719591738945, 0, 0.92473414634], [3.70719591738945, 0, 2.44912439024], [1, 0, 2.44912439024]], "visible": true}, "Window_ldb_1.unit1": {"surface_type": "Window", "vertices": [[9.39118972483, 9.09981820971244, 0.92473414634], [6.68399380744, 9.09981820971244, 0.92473414634], [6.68399380744, 9.09981820971244, 2.44912439024], [9.39118972483, 9.09981820971244, 2.44912439024]], "visible": true}, "Window_sdr_1.unit1": {"surface_type": "Window", "vertices": [[12.1330909462833, 1, 0.92473414634], [12.1330909462833, 3.70719591738945, 0.92473414634], [12.1330909462833, 3.70719591738945, 2.44912439024], [12.1330909462833, 1, 2.44912439024]], "visible": true}, "Window_sdl_1.unit1": {"surface_type": "Window", "vertices": [[0, 8.09981820971244, 0.92473414634], [0, 5.39262229232, 0.92473414634], [0, 5.39262229232, 2.44912439024], [0, 8.09981820971244, 2.44912439024]], "visible": true}, "Window_ldf_2.unit1": {"surface_type": "Window", "vertices": [[1, 0, 3.52629756097], [3.70719591738945, 0, 3.52629756097], [3.70719591738945, 0, 5.05068780487], [1, 0, 5.05068780487]], "visible": true}, "Window_ldb_2.unit1": {"surface_type": "Window", "vertices": [[9.39118972483, 9.09981820971244, 3.52629756097], [6.68399380744, 9.09981820971244, 3.52629756097], [6.68399380744, 9.09981820971244, 5.05068780487], [9.39118972483, 9.09981820971244, 5.05068780487]], "visible": true}, "Window_sdr_2.unit1": {"surface_type": "Window", "vertices": [[12.1330909462833, 1, 3.52629756097], [12.1330909462833, 3.70719591738945, 3.52629756097], [12.1330909462833, 3.70719591738945, 5.05068780487], [12.1330909462833, 1, 5.05068780487]], "visible": true}, "Window_sdl_2.unit1": {"surface_type": "Window", "vertices": [[0, 8.09981820971244, 3.52629756097], [0, 5.39262229232, 3.52629756097], [0, 5.39262229232, 5.05068780487], [0, 8.09981820971244, 5.05068780487]], "visible": true}, "int_door_garage1": {"surface_type": "Door", "vertices": [[6.53709094628, 0, 0.0101], [7.45149094628, 0, 0.0101], [7.45149094628, 0, 2.14424634146], [6.53709094628, 0, 2.14424634146]], "visible": true}}, "Shading:Building:Detailed": {}, "Daylighting:ReferencePoint": {}};
+
+
+update_container_dimensions(2000, 1000);
+
+update_JavaScript_data(true, 90, input_dict, "Counterclockwise", true, "");
+*/
+</script>
+
+</head>
+<body></body>
+</html>

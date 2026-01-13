@@ -5,6 +5,8 @@ rmdir /s /q Output
 copy ..\LICENSE.md LICENSE.md
 copy ..\PySide6_license.txt PySide6_license.txt
 copy ..\version.txt version.txt
+copy ..\_internal\three_geometry.html three_geometry.html
+xcopy ..\_internal\three.js three.js /E /I /H
 python -m venv env
 env\Scripts\pip3.exe install pyside6 pyinstaller
 env\Scripts\pyinstaller.exe windows.spec
@@ -18,3 +20,5 @@ rmdir /s /q Output
 del LICENSE.md
 del PySide6_license.txt
 del version.txt
+del three_geometry.html
+rmdir /s /q three.js
