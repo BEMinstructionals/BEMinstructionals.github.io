@@ -43,7 +43,7 @@ PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=BEM File Editor Setup
 SolidCompression=yes
 WizardStyle=modern
-SignTool=MySigningCommand
+SignTool=windowssigntool
 SignedUninstaller=yes
 
 [Languages]
