@@ -156,8 +156,16 @@ hr {
   width: 100%;
 }
 
-.installers_td {
-  padding-left: 1em;
+.installer_text_td {
+  vertical-align: top;
+  padding-left: 0em;
+  padding-top: 1em;
+}
+
+.installers_os_img_td {
+  text-align: center;
+  vertical-align: top;
+  padding-top: 1em;
 }
 
 .installers_os_img {
@@ -247,7 +255,7 @@ hr {
 .contact_left_column {
   float: left;
   width: 30%;
-  text-align:center;
+  text-align: center;
 }
 
 .contact_right_column {
@@ -421,6 +429,7 @@ window.onload = function() {
       <a href="#id_Downloads" class="navigation_bar_anchors subtitle_font">Downloads</a>
       <a href="#id_Consulting" class="navigation_bar_anchors subtitle_font">Consulting</a>
       <a href="#id_Learning_Resources" class="navigation_bar_anchors subtitle_font">Learning Resources</a>
+      <a href="#id_Prototype_Models" class="navigation_bar_anchors subtitle_font">Prototype Models</a>
       <a href="#id_Contact" class="navigation_bar_anchors subtitle_font">Contact</a>
     </div>
   </div>
@@ -434,7 +443,7 @@ window.onload = function() {
   <hr class="short_hr">
   
   <span class="text_font">
-    The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the <a href="https://energyplus.net/" target="_blank" class="text_anchors text_font">EnergyPlus</a> whole building energy simulation program. The BEM File Editor installers do not contain any version of the EnergyPlus simulation program. Each version of EnergyPlus you want to use must be installed separately.
+    The BEM File Editor is a modern editor for *.idf files, which are the Input Data File (IDF) files for the <a href="https://energyplus.net/" target="_blank" class="text_anchors text_font">EnergyPlus</a> whole building energy simulation program. The BEM File Editor does not contain any version of the EnergyPlus simulation program. Each version of EnergyPlus you want to use must be installed separately.
   </span>
   
   <br>
@@ -450,7 +459,7 @@ window.onload = function() {
   <br>
   
   <span class="text_font">
-    Very simple. I work as a consultant for EnergyPlus projects with the BEM File Editor and <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> serving as free advertising. (See the <a href="#id_Consulting" class="text_anchors text_font">BEM Instructionals Consulting</a> section of this website or use <span class="email_text">mitchaldichter@beminstructionals.com</span> to contact me directly.) There was a large upfront time investment to make the BEM File Editor, some code maintenance, and I pay a <a href="https://en.wikipedia.org/wiki/Code_signing" target="_blank" class="text_anchors text_font">Code Signing Certificate</a> (assures the user and OS that the software is safe) and other fees of about $1,000 annually, but the costs are well worth the amount of paid work they bring in. Plus, the <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> demonstrate that I am a competent EnergyPlus modeler, while the BEM File Editor code shows that I'm a good programmer.
+    Very simple. I work as a consultant for EnergyPlus projects with the BEM File Editor and <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> serving as free advertising. (See the <a href="#id_Consulting" class="text_anchors text_font">BEM Instructionals Consulting</a> section of this website or use <span class="email_text">mitchaldichter@beminstructionals.com</span> to contact me directly.) There was a large upfront time investment to make the BEM File Editor, some code maintenance, and I pay a <a href="https://en.wikipedia.org/wiki/Code_signing" target="_blank" class="text_anchors text_font">Code Signing Certificate</a> (assures the user and OS that the software is safe) and some other annual fees, but the costs are well worth the amount of paid work they bring in. Plus, the <a href="https://www.youtube.com/@BEMInstructionals" target="_blank" class="text_anchors">YouTube videos</a> demonstrate that I am a competent EnergyPlus modeler, while the BEM File Editor code shows that I'm a good programmer.
   </span>
   
   <br>
@@ -507,11 +516,11 @@ window.onload = function() {
         <hr class="tabs_and_features_hr">
         <span class="text_font">
           <ul>
-            <!--<li><b>Cross-Platform</b> - Installers for Windows, macOS, and Ubuntu. Can also be run with Python directly.</li>-->
+            <li><b>Cross-Platform</b> - Can be run with Python directly on Windows, macOS, and Ubuntu with an installer for Windows.</li>
             <li><b>Multiple EnergyPlus Versions</b> - A single installation can open multiple EnergyPlus IDF versions via a simple drop down menu to choose the version number.</li>
             <li><b>Dual BSD-3-Clause License and GNU GPLv3</b> - The EnergyPlus license is similar to the BSD-3-Clause license, and the GNU GPLv3 is a well known free software license.</li>
-            <li><b>Modern User Interface</b> - Vector graphics based fonts, choice of font family, and  font point size.</li>
-            <li><b>EV Code Signing Certificate</b> - Verifies the publisher of software, confirming both the identity of the publisher and the integrity of the code.</li>
+            <li><b>Modern User Interface</b> - Vector graphics based fonts, choice of font family, font point size, et cetera.</li>
+            <li><b>EV Code Signing Certificate</b> - Verifies the publisher of software, confirming both the identity of the publisher and the integrity of the code on Windows.</li>
             <br>
             <li>Detect if the *.idf on disk have been modified by some other program since opening in the BEM File Editor.</li>
             <li>Help menu links to useful resources, like the I/O Reference, for the currently selected EnergyPlus version.</li>
@@ -567,11 +576,10 @@ window.onload = function() {
             <li>View building geometry defined by the vertices of objects.</li>
             <li>The exterior and interior side of a surface are a darker and lighter shade to verify that the object vertex order matches the specified EnergyPlus vertex order.</li>
             <li>Pan, rotate, and zoom with mouse.</li>
-            <li>Alternatively specify the camera position and center of view in the left menu.</li>
-            <li>Compatible with BuildingSurface:Detailed, FenestrationSurface:Detailed, Shading:Site:Detailed, and Daylighting:ReferencePoint objects.</li>
-            <li>Toggle Axes, Wireframe of hidden surfaces, and Implicit Surfaces (REVERSED prefix).</li>
+            <li>Compatible with BuildingSurface:Detailed, FenestrationSurface:Detailed, Shading:Building:Detailed, and Daylighting:ReferencePoint objects.</li>
+            <li>Toggle xyz Axes, North direction, and Wireframes of hidden surfaces.</li>
             <li>Left selection tree can toggle surface groups based on object fields.</li>
-            <li>Useful for checking all surfaces have the intended Construction, Zone, Surface Type, Outisde Boundary Condition, Sun Exposure, Wind Exposure.</li>
+            <li>Useful for checking all surfaces have the intended Construction, Zone, Surface Type, Outside Boundary Condition, Sun Exposure, Wind Exposure.</li>
             <li>Displays 3D axes x, y, z as red, green, blue and the North Axis as orange.</li>
           </ul>
         </span>
@@ -586,7 +594,8 @@ window.onload = function() {
         <hr class="tabs_and_features_hr">
         <span class="text_font">
           <ul>
-            <li>Draggable text boxes for objects, nodes, and fields with pan and zoom.</li>
+            <li>Draggable text boxes for objects, nodes, and field names with overflow scrollbars and zoom.</li>
+            <li>Save and restore your work as Node Connections View (*.ncv) files.</li>
             <li>Selector for all existing objects with node name fields.</li>
             <li>Field text boxes can be automatically or manually placed.</li>
             <li>Double-click text box to display all connected nodes/objects.</li>
@@ -662,6 +671,7 @@ window.onload = function() {
       <li>The code is available on the <a href="https://github.com/beminstructionals/beminstructionals.github.io" target="_blank" class="text_anchors">BEM Instructionals GitHub repo</a>.</li>
       <li>The BEM Instructionals logo is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="text_anchors">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</li>
       <li>PySide6 is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html#license-text" target="_blank" class="text_anchors">GNU General Public License version 3</a>.</li>
+      <li>Three.js is made available under the <a href=\"https://github.com/mrdoob/three.js/blob/dev/LICENSE\" target="_blank" class="text_anchors">MIT License</a>.</li>
     </ul>
   </span>
   
@@ -693,7 +703,7 @@ window.onload = function() {
     <tr>
       <td colspan="2" class="downloads_divider" style="width:45%;">
         <span class="subtitle_font">
-          Installer for Version 1.5.0
+          Version 1.6.0 Supported Operating Systems and Architectures
         </span>
       </td>
       
@@ -701,34 +711,50 @@ window.onload = function() {
       
       <td>
         <span class="subtitle_font">
-          Run using Python without Installing
+          Run using Python in the Command Line
         </span>
       </td>
     </tr>
     
-    <tr >
-      <td rowspan="2" style="text-align: right; vertical-align: top; padding-top: 1em;"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
-      <td class="downloads_divider" style="vertical-align: top; padding-left: 1em; padding-top: 1em;">
+    <tr>
+      <td class="installers_os_img_td"><img src="Microsoft_logo.svg" alt="Windows logo" class="installers_os_img"></td>
+      <td class="installer_text_td downloads_divider">
         Windows 11 x86_64<br>
-        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.5.0/BEM-File-Editor-Setup.exe" target="_blank" class="text_anchors">BEM-File-Editor-Setup.exe</a>
+        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.6.0/BEM-File-Editor-Setup.exe" target="_blank" class="text_anchors">BEM-File-Editor-Setup.exe</a>
       </td>
       
       <td></td>
       
-      <td rowspan="2" style="padding-left: 1em;">
-        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.5.0/BEM-File-Editor-1.5.0.zip" target="_blank"><img src="zip_icon.webp" alt="zip_icon" class="installers_zip_img"></a> <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.5.0/BEM-File-Editor-1.5.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.5.0.zip</a>
+      <td rowspan="3" style="padding-left: 1em;">
+        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.6.0/BEM-File-Editor-1.6.0.zip" target="_blank"><img src="zip_icon.webp" alt="zip_icon" class="installers_zip_img"></a> <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.6.0/BEM-File-Editor-1.6.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.6.0.zip</a>
         <br>
-        This option is useful for users with employers that limit what can be installed on their computer and for uncommon or older operating systems.
+        This option will work for Windows, macOS, and Ubuntu users. It is especially useful for users with employers that limit what can be installed on their computer.
         <ol style="margin: 0px;">
           <li>Install PySide6 using "pip install pyside6".</li>
           <li>Run "python main.py" to start the BEM File Editor.</li>
         </ol>
-        <i>Using Python 3.13 is recommended for compatibility.</i>
+        <i>Using Python 3.14 is recommended for compatibility.</i>
       </td>
       
     </tr>
     <tr>
-      <td class="downloads_divider"></td>
+      <td class="installers_os_img_td"><img src="Apple_logo_grey.svg" alt="Apple logo" class="installers_os_img"></td>
+      
+      <td class="installer_text_td downloads_divider">
+        macOS Tahoe ARM64<br>
+        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.6.0/BEM-File-Editor-1.6.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.6.0.zip</a>
+      </td>
+      
+      <td></td>
+    </tr>
+    
+    <tr>
+      <td class="installers_os_img_td"><img src="Logo-ubuntu_cof-orange-hex.svg" alt="Ubuntu logo" class="installers_os_img"></td>
+      
+      <td class="installer_text_td downloads_divider">
+        Ubuntu 24.04.3 LTS amd64<br>
+        <a href="https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases/download/v1.6.0/BEM-File-Editor-1.6.0.zip" target="_blank" class="text_anchors">BEM-File-Editor-1.6.0.zip</a>
+      </td>
       
       <td></td>
     </tr>
@@ -739,6 +765,14 @@ window.onload = function() {
       <td></td>
     </tr>
   </table>
+  
+  <br>
+  
+  <span class="text_font">
+    <b>Why are there no installers for macOS and Ubuntu?</b>
+    <br>
+    Simply put, the available tools to create standalone executables from Python scripts, such as PyInstaller and Nuitka, are not as well supported on macOS and Ubuntu as they are on Windows. I am entirely dependent on these tools to create an installer, and there's just not a whole lot of demand for them on macOS and Ubuntu. (But good news! This project is open-source. So if you're capable and feeling charitable, I'd love to add a donated build script for creating macOS and Ubuntu installers for future releases.)
+  </span>
   
   <br>
   <br>
@@ -928,6 +962,13 @@ window.onload = function() {
   <br>
   <br>
   
+  <span id="id_Prototype_Models" class="title_font">
+    Prototype Models
+  </span>
+  <hr class="short_hr">
+  
+  <br>
+  
   <!--<span class="subtitle_font">
     Modified Prototype Models
   </span>
@@ -938,7 +979,7 @@ window.onload = function() {
   <span class="text_font">
     The <a href="https://www.energy.gov/eere/buildings/commercial-reference-buildings" target="_blank" class="text_anchors">DOE Commercial Reference Buildings</a> and subsequent <a href="https://www.energycodes.gov/prototype-building-models" target="_blank" class="text_anchors">PNNL Prototype Building Models</a> are representative building models that were updated periodically, with the latest PNNL prototypes still being updated, to estimate energy savings associated with changes in energy codes and standards. (More information in the <a href="#id_Prototype_Models_Created_by_the_Government" class="text_anchors">Prototype Models Created by the Government</a> section below.) One drawback of the sequences of models is the newer models do not take advantage of some newer EnergyPlus features. This is intentional so that changes in model outputs compared across versions will be due to the intentional changes in energy codes and standards without noise being introduced by the use of different modeling features. One example of this is the newer ground heat transfer methods available in EnergyPlus, which are far easier to specify and simulate. (See <a href="https://bigladdersoftware.com/projects/kiva/" target="_blank" class="text_anchors">https://bigladdersoftware.com/projects/kiva/</a> for an example.)<br>
     <br>
-    Below are some changes I've made to PNNL Prototype Building Models with IDF file download links. (A description of all the changes can be found in a comment at the top of the IDF file viewed with a text editor.) These models are better suited for simulating hypothetical future buildings. Different combinations of energy efficiency technologies can be simulated to estimate savings against the overall monetary costs. For example, the benefit of indirect evaporative cooling on outdoor air intake during heat waves.
+    Below are some modified PNNL Prototype Building Models to use more modern EnergyPlus features and objects. These models are better suited for simulating hypothetical future buildings. Different combinations of energy efficiency technologies can be simulated to estimate savings against the overall monetary costs. For example, the benefit of indirect evaporative cooling on outdoor air intake during heat waves. Each IDF includes a description of all the modifications, along with the original PNNL IDF description, in a comment at the top of the IDF file viewed with a text editor. All the IDFs are available in <a href="modified_PNNL_models.zip" target="_blank" class="text_anchors">modified_PNNL_models.zip</a> for download.
   </span>
     
   <br>
@@ -1241,7 +1282,7 @@ window.onload = function() {
   </div>
   
   <span class="text_font">
-    Copyright &copy; 2025 Mitchal Dichter, LLC.
+    Copyright &copy; 2025-2026 Mitchal Dichter, LLC.
   </span>
   
 </div>
