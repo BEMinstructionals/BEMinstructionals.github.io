@@ -10,7 +10,7 @@ For a much more comprehensive overview, please see the accompanying [BEM Instruc
 
 The [Downloads](https://beminstructionals.com/#id_Downloads) section of the accompanying website has links for the latest version of the BEM File Editor.
 
-If you would like to download the files for the current or a previous release directly from the GitHub repo, the [Releases page](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases) has all the releases and their assets.
+If you would like to download the files for the current release directly from the GitHub repo, the [Releases page](https://github.com/BEMinstructionals/BEMinstructionals.github.io/releases) has the most recent release and its assets.
 
 ## Reporting Bugs
 
