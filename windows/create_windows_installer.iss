@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "BEM File Editor"
-#define MyAppVersion "1.6.1"
+#define MyAppVersion "1.6.2"
 #define MyAppPublisher "BEM Instructionals"
 #define MyAppURL "https://beminstructionals.com/"
 #define MyAppExeName "BEM File Editor.exe"

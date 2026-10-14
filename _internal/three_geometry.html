@@ -26,7 +26,6 @@ import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 //sizing constants
 const axes_length = 200;
 const axes_line_width = 2;
-const wireframe_radius = 0.1;
 const daylighting_reference_point_radius = 0.5;
 
 //used for rotations
@@ -107,7 +106,7 @@ globalThis.update_container_dimensions = update_container_dimensions;
 
 let geometry_dict; //contains almost all information for the geometry objects
 
-function update_JavaScript_data(axes_visible_parameter, north_axis_conventional_maths_angle_parameter, geometry_dict_parameter, vertex_entry_direction_parameter, wireframe_visible_parameter, highlighted_name_parameter) {
+function update_JavaScript_data(axes_visible_parameter, north_axis_conventional_maths_angle_parameter, geometry_dict_parameter, vertex_entry_direction_parameter, wireframe_visible_parameter, wireframe_radius_parameter, highlighted_name_parameter) {
   //change the North axis angle
   north_axis_angle = north_axis_conventional_maths_angle_parameter;
   north_axis_line2.geometry.setPositions(north_axis_initial_points); //reset line to be on the x-axis
@@ -281,7 +280,7 @@ function update_JavaScript_data(axes_visible_parameter, north_axis_conventional_
         let unit_vector_to_edge_center = center.clone().normalize();
         //the cylinder is made along the y-axis with center at the origin
         let edge_length = edge_start_vertex_3.distanceTo(edge_end_vertex_3);
-        let cylinder_geometry = new THREE.CylinderGeometry(wireframe_radius, wireframe_radius, edge_length, 8, 2, true); //radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded
+        let cylinder_geometry = new THREE.CylinderGeometry(wireframe_radius_parameter, wireframe_radius_parameter, edge_length, 8, 2, true); //radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded
         let cylinder_mesh = new THREE.Mesh(cylinder_geometry,materials_dict["Wireframe"]);
         //the center of the cylinder is moved to the center of the edge
         cylinder_mesh.translateOnAxis(unit_vector_to_edge_center,center.length()); //coordinate system moves with cylinder
@@ -295,7 +294,7 @@ function update_JavaScript_data(axes_visible_parameter, north_axis_conventional_
         }
         properties_dict["scene_children"]["wireframe"].add(cylinder_mesh);
         
-        let sphere_geometry = new THREE.SphereGeometry(wireframe_radius,8,8); //radius, widthSegments, heightSegments
+        let sphere_geometry = new THREE.SphereGeometry(wireframe_radius_parameter,8,8); //radius, widthSegments, heightSegments
         sphere_geometry.translate(properties_dict["vertices"][i][0],properties_dict["vertices"][i][1],properties_dict["vertices"][i][2]);
         let sphere_mesh = new THREE.Mesh(sphere_geometry,materials_dict["Wireframe"]);
         properties_dict["scene_children"]["wireframe"].add(sphere_mesh);
@@ -327,6 +326,7 @@ function update_JavaScript_data(axes_visible_parameter, north_axis_conventional_
   
   //highlight the new geometry object and reset the previous geometry object colors
   //must be run after parsing the geometry_dict so surfaces exist
+  update_highlighted_name(""); //reset and reapply in next line, which is necessary when the geometry is being completely redone
   update_highlighted_name(highlighted_name_parameter);
 }
 globalThis.update_JavaScript_data = update_JavaScript_data;
