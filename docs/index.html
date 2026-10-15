@@ -983,7 +983,7 @@ window.onload = function() {
   
   <br>
   
-  <!--<span class="subtitle_font">
+  <span class="subtitle_font">
     Modified Prototype Models
   </span>
   
@@ -991,9 +991,11 @@ window.onload = function() {
   <br>
   
   <span class="text_font">
-    The <a href="https://www.energy.gov/eere/buildings/commercial-reference-buildings" target="_blank" class="text_anchors">DOE Commercial Reference Buildings</a> and subsequent <a href="https://www.energycodes.gov/prototype-building-models" target="_blank" class="text_anchors">PNNL Prototype Building Models</a> are representative building models that were updated periodically, with the latest PNNL prototypes still being updated, to estimate energy savings associated with changes in energy codes and standards. (More information in the <a href="#id_Prototype_Models_Created_by_the_Government" class="text_anchors">Prototype Models Created by the Government</a> section below.) One drawback of the sequences of models is the newer models do not take advantage of some newer EnergyPlus features. This is intentional so that changes in model outputs compared across versions will be due to the intentional changes in energy codes and standards without noise being introduced by the use of different modeling features. One example of this is the newer ground heat transfer methods available in EnergyPlus, which are far easier to specify and simulate. (See <a href="https://bigladdersoftware.com/projects/kiva/" target="_blank" class="text_anchors">https://bigladdersoftware.com/projects/kiva/</a> for an example.)<br>
+    The <a href="https://www.energy.gov/eere/buildings/commercial-reference-buildings" target="_blank" class="text_anchors">DOE Commercial Reference Buildings</a>, and subsequent <a href="https://www.energycodes.gov/prototype-building-models" target="_blank" class="text_anchors">PNNL Prototype Building Models</a>, are representative building models that were updated periodically, with the latest PNNL prototypes still being updated, to estimate energy savings associated with changes in energy codes and standards. (More information in the <a href="#id_Prototype_Models_Created_by_the_Government" class="text_anchors">Prototype Models Created by the Government</a> section below.) One drawback of the sequences of models is the newer models do not take advantage of some newer EnergyPlus features. This is intentional so that changes in model outputs compared across versions will be due to the intentional changes in energy codes and standards without noise being introduced by the use of different modeling features. One example of this is the newer ground heat transfer methods available in EnergyPlus, which are far easier to specify and simulate. (See <a href="https://bigladdersoftware.com/projects/kiva/" target="_blank" class="text_anchors">https://bigladdersoftware.com/projects/kiva/</a> for an example.)<br>
     <br>
-    Below are some modified PNNL Prototype Building Models to use more modern EnergyPlus features and objects. These models are better suited for simulating hypothetical future buildings. Different combinations of energy efficiency technologies can be simulated to estimate savings against the overall monetary costs. For example, the benefit of indirect evaporative cooling on outdoor air intake during heat waves. Each IDF includes a description of all the modifications, along with the original PNNL IDF description, in a comment at the top of the IDF file viewed with a text editor. All the IDFs are available in <a href="modified_PNNL_models.zip" target="_blank" class="text_anchors">modified_PNNL_models.zip</a> for download.
+    Below are Geometry screenshots of some modified PNNL Prototype Building Models to use more modern EnergyPlus features and objects. These models are better suited for simulating hypothetical future buildings. Different combinations of energy efficiency technologies can be simulated to estimate savings against the overall monetary costs. For example, the benefit of indirect evaporative cooling on outdoor air intake during heat waves.<br>
+    <br>
+    I made these models for use by and with clients. Some of the models are generated with python scripts. This allows for easier automation, especially in the multistory buildings, for parametric model generation. One large change is the explicit modeling of all zones instead of using zone multipliers. This is where EnergyPlus shows some of its age. With today's computers, simulating all zones explicitly might take 8 minutes instead of 4 minutes, which is not at all worth the savings if the user spends 20 times as long checking the model to make sure the zone multipliers actually work. The zone multipliers can work, but can be difficult to do correctly, and are time consuming to verify. Examples are when using cooled and heated water to condition air at the terminal unit in multiplied zones, accounting for total air flow on a shared fan, or extra water flow for a pump, can be difficult to specify correctly in an EnergyPlus model with zone multipliers. Back in the 1990s and 2000s, simulation time was much longer, and using zone multipliers made sense, but not with today's computers.
   </span>
     
   <br>
@@ -1112,7 +1114,7 @@ window.onload = function() {
   
   <br>
   <br>
-  <br>-->
+  <br>
   
   <span class="subtitle_font" id="id_Prototype_Models_Created_by_the_Government">
     Prototype Models Created by the Government
@@ -1122,7 +1124,7 @@ window.onload = function() {
   <br>
   
   <span class="text_font">
-    For years, the DOE has funded the creation and updating of building models in EnergyPlus. These building models cover a variety of commercial and residential building types, meant to be representative of a significant portion of all existing buildings in the US. The models are updated periodically to simulate energy savings associated with changes in energy codes and standards. This <a href="https://www.youtube.com/watch?v=5hV4okjXkF8" target="_blank" class="text_anchors">Building Prototype Models Overview</a> is a brief video showing the source websites and discussing some of the models.<br>
+    For years, the DOE has funded the creation and updating of building models in EnergyPlus. These building models cover a variety of commercial and residential building types, meant to be representative of a significant portion of all existing buildings in the US. The models are updated periodically to simulate energy savings associated with changes in energy codes and standards. This <a href="https://www.youtube.com/watch?v=5hV4okjXkF8&list=PLHAVvn_0HAtdgt41OAwob8ufEc-SReXW4" target="_blank" class="text_anchors">Building Prototype Models Overview</a> is a brief video showing the source websites and discussing some of the models.<br>
     <br>
     For researchers, the models are useful as base models to investigate changes in construction, equipment, and controls on energy use and utility bills. Two of the most useful parts of each building model are the overall geometry and schedules specified in the IDF file. Researchers can have confidence that the parts of the model that can't easily be calculated or looked up, such as the behavior of people in the building and thermostat setpoints, were rigorously investigated for each building type.<br>
     <br>
